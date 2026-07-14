@@ -108,26 +108,9 @@ The container reads `.env` for pfSense credentials and mounts `../uptime-kuma-sy
 
 ## Audit output
 
-```
-Services Missing a UK Monitor  0 of 132 services
-────────────────────────────────────────────────────────────────────────
-  All 132 pfSense services have an Uptime Kuma monitor.
-
-  110/132 tracked — run with --verbose to also see matched services
-  (22 intentional gaps hidden — run with --show-ignored to see)
-
-UK Monitors Not Linked to pfSense  15 total
-────────────────────────────────────────────────────────────────────────
-    3  on external-access path  (*.vpn.example.com — same services, different inbound route)
-    6  third-party / external    (google.com, simplelogin.io, ifconfig.*, …)
-    0  no pfSense counterpart  (all unmapped monitors are accounted for)
-       6 intentional — run with --show-ignored to see
-
-Summary
-────────────────────────────────────────────────────────────────────────
-  pfSense services  :  110 have a UK monitor  /  0 actionable gaps  + 22 intentional  (132 total)
-  UK monitors       :  244 non-group  →  3 external-path, 6 third-party, 0 unrecognized
-```
+<p align="center">
+  <img src="audit-output.svg" alt="make audit output" width="100%"/>
+</p>
 
 **CLI flags (passed via `node audit.js` or the Makefile targets):**
 
