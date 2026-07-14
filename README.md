@@ -20,15 +20,15 @@ Audit and reconciliation tool for keeping [Uptime Kuma](https://github.com/louis
 
 ## How it works
 
-The tool fetches data from pfSense (HAProxy backends + DNS resolver host overrides) and Uptime Kuma (monitor list), then builds a unified service registry keyed by first subdomain label (e.g. `nextcloud` from `nextcloud.lamolabs.org`). Each service entry shows whether it has a HAProxy backend, a public DNS alias, and an active UK monitor.
+The tool fetches data from pfSense (HAProxy backends + DNS resolver host overrides) and Uptime Kuma (monitor list), then builds a unified service registry keyed by first subdomain label (e.g. `nextcloud` from `nextcloud.example.com`). Each service entry shows whether it has a HAProxy backend, a public DNS alias, and an active UK monitor.
 
 Matching is two-pass: first by monitor URL label, then by monitor name — so services where the HAProxy backend name and monitor name agree but the monitor URL uses a different DNS alias are correctly resolved.
 
 ## Setup
 
 **Prerequisites:**
-- [`../pfsense-cli`](https://github.com/smingolelli/pfsense-cli) — pfSense CLI (used by Makefile survey targets)
-- [`../uptime-kuma-sync-n-bak`](https://github.com/smingolelli/uptime-kuma-sync-n-bak) — UK backup/sync/list scripts and `uptime-kuma-config.json`
+- `../pfsense-cli` — pfSense CLI (used by Makefile survey targets)
+- `../uptime-kuma-sync-n-bak` — UK backup/sync/list scripts and `uptime-kuma-config.json`
 
 ```bash
 cp .env.example .env
@@ -41,8 +41,8 @@ npm install
 
 ```env
 # pfSense
-PFSENSE_HOST=https://pfsense-rtr1.bub.lan:10443
-PFSENSE_API_KEY=slm
+PFSENSE_HOST=https://pfsense.example.lan:10443
+PFSENSE_API_KEY=your-api-key
 PFSENSE_API_SECRET=your-api-secret
 NODE_TLS_REJECT_UNAUTHORIZED=0
 
@@ -50,7 +50,7 @@ NODE_TLS_REJECT_UNAUTHORIZED=0
 UPTIME_KUMA_INSTANCE=primary
 
 # Uptime Kuma — Option B: direct credentials
-# UPTIME_KUMA_URL=https://uptime-kuma.lamolabs.org
+# UPTIME_KUMA_URL=https://uptime-kuma.example.com
 # UPTIME_KUMA_USER=admin
 # UPTIME_KUMA_PASS=your-password
 ```
@@ -118,7 +118,7 @@ Services Missing a UK Monitor  0 of 132 services
 
 UK Monitors Not Linked to pfSense  15 total
 ────────────────────────────────────────────────────────────────────────
-    3  on external-access path  (*.svcs.lamolabs.com — same services, different inbound route)
+    3  on external-access path  (*.vpn.example.com — same services, different inbound route)
     6  third-party / external    (google.com, simplelogin.io, ifconfig.*, …)
     0  no pfSense counterpart  (all unmapped monitors are accounted for)
        6 intentional — run with --show-ignored to see
@@ -143,30 +143,30 @@ Services and monitors that are intentionally unmonitored are listed in `.audit-i
 ```json
 {
   "services": [
-    "doco_cd_host1",
+    "deploy-agent-01",
     "omv",
-    "watcher-home",
+    "internal-svc",
     "..."
   ],
   "monitors": [
-    "flaresolverr",
-    "NET - opnsense-rtr1",
+    "bypass-proxy",
+    "NET - router-01",
     "..."
   ]
 }
 ```
 
 Common reasons to ignore a service:
-- **Alias for another tracked service** — `filesharing` is a vanity alias for `pingvinfs`
-- **Already covered under a different name** — `BandOnTheRun` backend is monitored via the `botr` DNS alias
-- **Internal infrastructure** — CD pipeline agents (`doco_cd_host*`), mesh nodes, UK instances themselves
+- **Alias for another tracked service** — `files` is a vanity alias for `fileserver`
+- **Already covered under a different name** — `MyApp` backend is monitored via the `app` DNS alias
+- **Internal infrastructure** — CD pipeline agents, mesh nodes, UK instances themselves
 
 ## Domain conventions
 
 | Domain | Purpose |
 |---|---|
-| `*.lamolabs.org` | Public services routed through pfSense HAProxy |
-| `*.bub.lan` | Internal LAN DNS — not tracked in the service registry |
-| `*.svcs.lamolabs.com` | External VPN/tunnel access path — same services, different inbound route, not a gap |
+| `*.example.com` | Public services routed through pfSense HAProxy |
+| `*.example.lan` | Internal LAN DNS — not tracked in the service registry |
+| `*.vpn.example.com` | External VPN/tunnel access path — same services, different inbound route, not a gap |
 
-HAProxy backend server addresses always use hostnames (e.g. `service.bub.lan`), never IPs.
+HAProxy backend server addresses always use hostnames (e.g. `service.example.lan`), never IPs.
