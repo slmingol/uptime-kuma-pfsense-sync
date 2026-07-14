@@ -1,0 +1,110 @@
+<svg width="1200" height="280" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0d1117"/>
+      <stop offset="100%" stop-color="#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f0581c"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#5cdd8b"/>
+    </linearGradient>
+    <linearGradient id="titleGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="60%" stop-color="#e2e8f0"/>
+      <stop offset="100%" stop-color="#94a3b8"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="nodeglow">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="280" fill="url(#bg)"/>
+
+  <!-- Subtle grid pattern -->
+  <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#21262d" stroke-width="0.5"/>
+  </pattern>
+  <rect width="1200" height="280" fill="url(#grid)" opacity="0.6"/>
+
+  <!-- Right-side network graph decoration -->
+  <!-- Edges first (behind nodes) -->
+  <g opacity="0.35" stroke-width="1.2">
+    <line x1="820" y1="60"  x2="940" y2="100" stroke="#f0581c"/>
+    <line x1="940" y1="100" x2="1050" y2="55" stroke="#a855f7"/>
+    <line x1="940" y1="100" x2="1010" y2="180" stroke="#7c3aed"/>
+    <line x1="1050" y1="55" x2="1130" y2="120" stroke="#6366f1"/>
+    <line x1="1010" y1="180" x2="1130" y2="120" stroke="#5cdd8b"/>
+    <line x1="820" y1="60"  x2="870" y2="170" stroke="#f97316"/>
+    <line x1="870" y1="170" x2="1010" y2="180" stroke="#10b981"/>
+    <line x1="870" y1="170" x2="940" y2="100" stroke="#8b5cf6"/>
+    <line x1="1130" y1="120" x2="1160" y2="210" stroke="#5cdd8b"/>
+    <line x1="1010" y1="180" x2="1080" y2="240" stroke="#34d399"/>
+    <line x1="820" y1="60"  x2="770" y2="130" stroke="#fb923c"/>
+    <line x1="770" y1="130" x2="870" y2="170" stroke="#f97316"/>
+    <line x1="1050" y1="55" x2="1000" y2="20"  stroke="#818cf8"/>
+  </g>
+
+  <!-- Network nodes -->
+  <g filter="url(#nodeglow)">
+    <circle cx="820"  cy="60"  r="7"  fill="#f0581c" opacity="0.9"/>
+    <circle cx="940"  cy="100" r="10" fill="#a855f7" opacity="0.9"/>
+    <circle cx="1050" cy="55"  r="6"  fill="#818cf8" opacity="0.85"/>
+    <circle cx="1010" cy="180" r="9"  fill="#10b981" opacity="0.9"/>
+    <circle cx="1130" cy="120" r="7"  fill="#6366f1" opacity="0.85"/>
+    <circle cx="870"  cy="170" r="8"  fill="#f97316" opacity="0.9"/>
+    <circle cx="770"  cy="130" r="5"  fill="#fb923c" opacity="0.75"/>
+    <circle cx="1160" cy="210" r="5"  fill="#5cdd8b" opacity="0.75"/>
+    <circle cx="1080" cy="240" r="4"  fill="#34d399" opacity="0.7"/>
+    <circle cx="1000" cy="20"  r="4"  fill="#c4b5fd" opacity="0.7"/>
+  </g>
+
+  <!-- Pulse rings on key nodes -->
+  <circle cx="940" cy="100" r="18" fill="none" stroke="#a855f7" stroke-width="1" opacity="0.3"/>
+  <circle cx="1010" cy="180" r="16" fill="none" stroke="#10b981" stroke-width="1" opacity="0.3"/>
+  <circle cx="820"  cy="60"  r="14" fill="none" stroke="#f0581c" stroke-width="1" opacity="0.3"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accent)"/>
+
+  <!-- Left accent stripe -->
+  <rect x="0" y="0" width="4" height="280" fill="url(#accent)"/>
+
+  <!-- Tool name -->
+  <text x="72" y="118" font-size="42" font-weight="700" letter-spacing="-1" fill="url(#titleGrad)">uptime-kuma-pfsense-sync</text>
+
+  <!-- Subtitle -->
+  <text x="72" y="158" font-size="19" fill="#8b949e" letter-spacing="0.2">pfSense HAProxy / DNS</text>
+  <text x="310" y="158" font-size="19" fill="#7c3aed">&#8596;</text>
+  <text x="330" y="158" font-size="19" fill="#8b949e">Uptime Kuma reconciliation &amp; survey tool</text>
+
+  <!-- Bottom pill labels -->
+  <!-- pfSense pill -->
+  <rect x="72" y="192" width="120" height="30" rx="15" fill="#f0581c" opacity="0.15"/>
+  <rect x="72" y="192" width="120" height="30" rx="15" fill="none" stroke="#f0581c" stroke-width="1" opacity="0.5"/>
+  <text x="132" y="212" font-size="13" font-weight="600" fill="#f97316" text-anchor="middle">pfSense API v2</text>
+
+  <!-- Uptime Kuma pill -->
+  <rect x="206" y="192" width="140" height="30" rx="15" fill="#5cdd8b" opacity="0.1"/>
+  <rect x="206" y="192" width="140" height="30" rx="15" fill="none" stroke="#5cdd8b" stroke-width="1" opacity="0.4"/>
+  <text x="276" y="212" font-size="13" font-weight="600" fill="#5cdd8b" text-anchor="middle">Uptime Kuma</text>
+
+  <!-- Node.js pill -->
+  <rect x="360" y="192" width="100" height="30" rx="15" fill="#68a063" opacity="0.12"/>
+  <rect x="360" y="192" width="100" height="30" rx="15" fill="none" stroke="#68a063" stroke-width="1" opacity="0.4"/>
+  <text x="410" y="212" font-size="13" font-weight="600" fill="#68a063" text-anchor="middle">Node.js 18+</text>
+
+  <!-- Socket.IO pill -->
+  <rect x="474" y="192" width="110" height="30" rx="15" fill="#ffffff" opacity="0.05"/>
+  <rect x="474" y="192" width="110" height="30" rx="15" fill="none" stroke="#4b5563" stroke-width="1" opacity="0.6"/>
+  <text x="529" y="212" font-size="13" font-weight="600" fill="#9ca3af" text-anchor="middle">Socket.IO</text>
+
+  <!-- Bottom fade -->
+  <rect x="0" y="250" width="1200" height="30" fill="url(#bg)" opacity="0.4"/>
+</svg>

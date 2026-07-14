@@ -1,0 +1,34 @@
+{
+  "services": [
+    "BandOnTheRun",
+    "CreatureCountdown",
+    "doco_cd_host1",
+    "doco_cd_host2",
+    "doco_cd_host3",
+    "doco_cd_host4",
+    "doco_cd_host5",
+    "doco_cd_host6",
+    "doco_cd_host7",
+    "doco_cd_host8",
+    "filesharing",
+    "meshmonitor-01",
+    "meshmonitor-04",
+    "meshmonitor-node-01",
+    "meshmonitor-node-02",
+    "meshmonitor-node-03",
+    "meshmonitor-node-04",
+    "meshmonitor-node-05",
+    "omv",
+    "uptime-kuma1",
+    "uptime-kuma2",
+    "watcher-home"
+  ],
+  "monitors": [
+    "flare-bypasser",
+    "tor-socks-proxy",
+    "flaresolverr",
+    "NET - opnsense-rtr1",
+    "UPS - nut-ups-01 - storage-ups",
+    "HDHomeRun IPTV"
+  ]
+}

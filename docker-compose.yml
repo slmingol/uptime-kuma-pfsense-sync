@@ -1,0 +1,9 @@
+services:
+  audit:
+    build: .
+    image: uptime-kuma-pfsense-sync
+    env_file: .env
+    volumes:
+      - ../uptime-kuma-sync-n-bak/uptime-kuma-config.json:/config/uptime-kuma-config.json:ro
+    environment:
+      - UPTIME_KUMA_CONFIG=/config/uptime-kuma-config.json
