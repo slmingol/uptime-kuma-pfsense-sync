@@ -1,3 +1,7 @@
+## <small>1.5.3 (2026-07-23)</small>
+
+* fix: update .env.example config path reference to ./config/ ([38ecc04](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/38ecc04))
+
 ## <small>1.5.2 (2026-07-23)</small>
 
 * fix: use self-contained ./config/ mount for prod compatibility ([f547af9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f547af9))
