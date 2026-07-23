@@ -21,6 +21,33 @@ let state = {
   error:   null,
 };
 
+// ─── HAProxy backend classifier ───────────────────────────────────────────────
+
+const IP_RE = /^\d+\.\d+\.\d+\.\d+$/;
+
+function classifyBackends(backends, dnsHosts) {
+  const hostAliasCount = {};
+  for (const entry of dnsHosts) {
+    hostAliasCount[`${entry.host}.${entry.domain}`] = (entry.aliases || []).length;
+  }
+
+  const safe = [], named = [], shared = [];
+  for (const backend of backends) {
+    for (const server of (backend.servers || [])) {
+      const addr = server.address;
+      const rec = { backend: backend.name, server: server.name, address: addr, port: server.port };
+      if (IP_RE.test(addr)) {
+        safe.push(rec);
+      } else if (hostAliasCount[addr] !== undefined && hostAliasCount[addr] >= 3) {
+        shared.push({ ...rec, aliasCount: hostAliasCount[addr] });
+      } else {
+        named.push(rec);
+      }
+    }
+  }
+  return { safe, named, shared };
+}
+
 // ─── Audit runner ─────────────────────────────────────────────────────────────
 
 async function runAudit() {
@@ -51,6 +78,8 @@ async function runAudit() {
     const activeOther = other.filter(m => !ignore.monitors.has(m.name.toLowerCase()));
     const nonGroup    = monitors.filter(m => m.type !== 'group').length;
 
+    const hap = classifyBackends(pfData.backends, pfData.dnsHosts);
+
     state.report = {
       generatedAt: new Date().toISOString(),
       totals: { services: all.length, covered: covered.length, gaps: active.length, suppressed, nonGroup },
@@ -65,6 +94,11 @@ async function runAudit() {
         svcs:      svcs.length,
         third:     third.length,
         other:     activeOther.map(m => ({ name: m.name, type: m.type, url: m.url || m.hostname || '' })),
+      },
+      haproxy: {
+        safe:   hap.safe.length,
+        named:  hap.named.length,
+        shared: hap.shared,
       },
     };
     state.status  = 'ok';
@@ -218,6 +252,14 @@ tr:hover td{background:#ffffff06}
     </div>
     <div id="um-body"><div class="empty">No data</div></div>
   </div>
+
+  <div class="sec">
+    <div class="sec-hdr">
+      <span class="sec-title">HAProxy Backend Address Health</span>
+      <span class="badge badge-gy" id="hap-badge">—</span>
+    </div>
+    <div id="hap-body"><div class="empty">No data</div></div>
+  </div>
 </div>
 
 <div class="foot">
@@ -318,6 +360,32 @@ function render(d){
     });
     h2 += '</div>';
     umb2.innerHTML = h2;
+  }
+
+  // HAProxy backend health
+  var hap = rpt.haproxy;
+  if(hap){
+    var hapb = document.getElementById('hap-badge');
+    hapb.textContent = hap.safe+' static IPs / '+hap.named+' hostnames / '+hap.shared.length+' shared';
+    hapb.className = 'badge '+(hap.shared.length===0?'badge-g':'badge-r');
+
+    var hapb2 = document.getElementById('hap-body');
+    if(hap.shared.length===0){
+      hapb2.innerHTML = '<div class="empty"><span class="g">&#10003; No shared/catch-all hostnames detected</span></div>';
+    } else {
+      var h3 = '<table><thead><tr><th></th><th>Backend</th><th>Server</th><th>Address</th><th>Aliases</th></tr></thead><tbody>';
+      hap.shared.forEach(function(s){
+        h3 += '<tr>';
+        h3 += '<td class="r">&#9888;</td>';
+        h3 += '<td class="b">'+esc(s.backend)+'</td>';
+        h3 += '<td class="saddr">'+esc(s.server)+'</td>';
+        h3 += '<td>'+esc(s.address+':'+s.port)+'</td>';
+        h3 += '<td class="saddr">'+s.aliasCount+' aliases</td>';
+        h3 += '</tr>';
+      });
+      h3 += '</tbody></table>';
+      hapb2.innerHTML = h3;
+    }
   }
 }
 
