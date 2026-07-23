@@ -1,3 +1,7 @@
+## <small>1.5.2 (2026-07-23)</small>
+
+* fix: use self-contained ./config/ mount for prod compatibility ([f547af9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f547af9))
+
 ## <small>1.5.1 (2026-07-23)</small>
 
 * fix: improve dashboard text contrast and readability ([19b0913](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/19b0913)), closes [#cbd5e1](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/cbd5e1) [#f1f5f9](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/f1f5f9)
