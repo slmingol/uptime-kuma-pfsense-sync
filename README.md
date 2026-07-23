@@ -68,6 +68,7 @@ make survey       # full inventory with match status for every service
 make audit INSTANCE=secondary
 
 # pfSense survey
+make pf-audit                 # audit HAProxy backend addresses for hostname risk
 make pf-backends              # list all HAProxy backends
 make pf-backends FILTER=jelly # filter by name
 make pf-dns                   # list all DNS host overrides
