@@ -1,0 +1,7 @@
+# Dev override — auto-merged by compose, not used in prod.
+# Adds local build so `make docker-build` / `make docker-restart` work
+# against locally modified source without needing a GHCR release.
+services:
+  audit:
+    build: .
+    image: uptime-kuma-pfsense-sync
