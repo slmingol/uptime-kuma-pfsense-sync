@@ -1,3 +1,7 @@
+## <small>1.5.1 (2026-07-23)</small>
+
+* fix: improve dashboard text contrast and readability ([19b0913](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/19b0913)), closes [#cbd5e1](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/cbd5e1) [#f1f5f9](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/f1f5f9)
+
 ## 1.5.0 (2026-07-23)
 
 * feat: add Show all toggle to services panel for full inventory view ([56bc45d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/56bc45d))
