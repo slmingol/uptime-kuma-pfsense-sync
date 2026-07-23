@@ -2,8 +2,20 @@ services:
   audit:
     build: .
     image: uptime-kuma-pfsense-sync
+    restart: unless-stopped
+    ports:
+      - "${AUDIT_PORT:-3210}:3000"
     env_file: .env
-    volumes:
-      - ../uptime-kuma-sync-n-bak/uptime-kuma-config.json:/config/uptime-kuma-config.json:ro
     environment:
       - UPTIME_KUMA_CONFIG=/config/uptime-kuma-config.json
+      # Override schedule (default: 08:00 daily). Standard cron syntax.
+      - AUDIT_CRON=${AUDIT_CRON:-0 8 * * *}
+      # To ignore extra services at runtime, mount a custom ignore file:
+      # - AUDIT_IGNORE_FILE=/config/audit-ignore.json
+    volumes:
+      - ../uptime-kuma-sync-n-bak/uptime-kuma-config.json:/config/uptime-kuma-config.json:ro
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/healthz"]
+      interval: 30s
+      timeout: 5s
+      start_period: 60s

@@ -16,7 +16,7 @@ COMPOSE          ?= $(CONTAINER_ENGINE) compose
 IMAGE            ?= uptime-kuma-pfsense-sync
 
 .PHONY: audit survey pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff install clean \
-        docker-build docker-audit docker-survey help
+        server docker-build docker-up docker-down docker-logs docker-restart docker-audit docker-survey help
 .DEFAULT_GOAL := help
 
 # ─── Help ─────────────────────────────────────────────────────────────────────
@@ -46,9 +46,10 @@ help: ## Show this help message
 	@printf "  \033[32mmake uk-backup\033[0m                    \033[90m# backup primary monitors to JSON\033[0m\n"
 	@printf "  \033[32mmake uk-diff\033[0m                      \033[90m# field-level diff: primary vs secondary\033[0m\n"
 	@printf "\n"
-	@printf "  \033[32mmake docker-build\033[0m                 \033[90m# build container image\033[0m\n"
-	@printf "  \033[32mmake docker-audit\033[0m                 \033[90m# run audit in Docker\033[0m\n"
-	@printf "  \033[32mmake docker-survey\033[0m                \033[90m# run survey in Docker\033[0m\n"
+	@printf "  \033[32mmake server\033[0m                       \033[90m# run the web dashboard locally (port 3000)\033[0m\n"
+	@printf "  \033[32mmake docker-up\033[0m                    \033[90m# start the web dashboard in Docker (port 3210)\033[0m\n"
+	@printf "  \033[32mmake docker-logs\033[0m                  \033[90m# tail the container logs\033[0m\n"
+	@printf "  \033[32mmake docker-restart\033[0m               \033[90m# rebuild and restart the container\033[0m\n"
 	@printf "\n"
 	@printf "  \033[90mINSTANCE choices: primary | secondary | local-dev  (from uptime-kuma-config.json)\033[0m\n"
 	@printf "\n"
@@ -60,6 +61,9 @@ audit: ## Gap report — pfSense services not tracked in Uptime Kuma [INSTANCE=p
 
 survey: ## Full inventory — all pfSense services with monitor match status [INSTANCE=primary]
 	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node audit.js --verbose
+
+server: ## Run the web dashboard locally (port 3000) [INSTANCE=primary]
+	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node server.js
 
 ##@ pfSense Survey
 
@@ -85,18 +89,34 @@ uk-diff: ## Field-level diff between primary and secondary instances
 
 ##@ Container
 
-docker-build: ## Build the container image [IMAGE=uptime-kuma-pfsense-sync]
-	@$(COMPOSE) build 2>/dev/null
+docker-build: ## Build the container image
+	$(COMPOSE) build
 
-docker-audit: ## Run gap audit in container [INSTANCE=primary]
+docker-up: ## Start the audit web dashboard in the background [AUDIT_PORT=3210]
+	$(COMPOSE) up -d
+	@printf "\033[32m✓\033[0m Dashboard: \033[36mhttp://localhost:$${AUDIT_PORT:-3210}\033[0m\n"
+
+docker-down: ## Stop the audit web dashboard
+	$(COMPOSE) down
+
+docker-logs: ## Tail container logs
+	$(COMPOSE) logs -f
+
+docker-restart: ## Rebuild image and restart the container
+	$(COMPOSE) down
+	$(COMPOSE) build
+	$(COMPOSE) up -d
+	@printf "\033[32m✓\033[0m Dashboard: \033[36mhttp://localhost:$${AUDIT_PORT:-3210}\033[0m\n"
+
+docker-audit: ## Run a one-shot CLI audit inside the container [INSTANCE=primary]
 	@$(COMPOSE) run --rm \
 	  -e UPTIME_KUMA_INSTANCE=$(INSTANCE) \
-	  audit 2>/dev/null
+	  --entrypoint node audit audit.js 2>/dev/null
 
-docker-survey: ## Run full survey in container [INSTANCE=primary]
+docker-survey: ## Run a one-shot CLI survey inside the container [INSTANCE=primary]
 	@$(COMPOSE) run --rm \
 	  -e UPTIME_KUMA_INSTANCE=$(INSTANCE) \
-	  audit --verbose 2>/dev/null
+	  --entrypoint node audit audit.js --verbose 2>/dev/null
 
 ##@ Infrastructure
 
