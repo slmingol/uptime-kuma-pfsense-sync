@@ -1,3 +1,7 @@
+## 1.5.0 (2026-07-23)
+
+* feat: add Show all toggle to services panel for full inventory view ([56bc45d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/56bc45d))
+
 ## <small>1.4.1 (2026-07-23)</small>
 
 * docs: document web dashboard panels and HAProxy backend health audit ([3ca25d4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3ca25d4))
