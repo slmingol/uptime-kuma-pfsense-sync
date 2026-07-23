@@ -1,3 +1,7 @@
+## <small>1.4.1 (2026-07-23)</small>
+
+* docs: document web dashboard panels and HAProxy backend health audit ([3ca25d4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3ca25d4))
+
 ## 1.4.0 (2026-07-23)
 
 * feat: add HAProxy backend health panel to audit dashboard ([45d556f](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/45d556f))
