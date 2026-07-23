@@ -115,7 +115,7 @@ The dashboard runs at `http://<host>:${AUDIT_PORT:-3210}`.
 
 ### Local dev
 
-The repo includes `docker-compose.override.yml` which is auto-merged by compose and adds `build: .` for the local build loop. No prod host will have this file.
+The repo includes `docker-compose.override.yaml` which is auto-merged by compose and adds `build: .` for the local build loop. No prod host will have this file.
 
 ```bash
 make docker-build          # build from local source
