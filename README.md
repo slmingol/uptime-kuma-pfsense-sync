@@ -124,6 +124,18 @@ The container reads `.env` for pfSense credentials and mounts `../uptime-kuma-sy
 | `--verbose` / `-v` | Show all services, not just gaps |
 | `--show-ignored` | Include entries suppressed by `.audit-ignore.json` |
 
+## Web dashboard
+
+The web dashboard (`make server` or `make docker-up`) runs both audits on a shared schedule and presents three panels:
+
+| Panel | What it checks |
+|---|---|
+| Services Missing a UK Monitor | pfSense backends/DNS entries with no Uptime Kuma monitor |
+| UK Monitors Without a pfSense Match | Uptime Kuma monitors not linked to any pfSense service |
+| HAProxy Backend Address Health | Backend server addresses classified by risk: static IP (safe), service hostname (reload risk), shared/catch-all host (high risk) |
+
+The schedule defaults to `0 8 * * *` and can be overridden with `AUDIT_CRON`. A "Run Now" button triggers an on-demand run.
+
 ## Suppressing known-intentional gaps
 
 Services and monitors that are intentionally unmonitored are listed in `.audit-ignore.json`. They are hidden from the default output but fully visible with `--show-ignored`.
