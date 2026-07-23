@@ -1,3 +1,7 @@
+## 1.4.0 (2026-07-23)
+
+* feat: add HAProxy backend health panel to audit dashboard ([45d556f](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/45d556f))
+
 ## <small>1.3.1 (2026-07-23)</small>
 
 * docs: add pf-audit to README usage section ([7b3ee66](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/7b3ee66))
