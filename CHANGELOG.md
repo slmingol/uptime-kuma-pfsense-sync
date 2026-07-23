@@ -1,3 +1,7 @@
+## <small>1.6.1 (2026-07-23)</small>
+
+* docs: rewrite container section with prod deploy and dev workflow ([95f77ef](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/95f77ef))
+
 ## 1.6.0 (2026-07-23)
 
 * feat: split compose into prod (GHCR pull) and dev (local build) configs ([f65be65](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f65be65))
