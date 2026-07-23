@@ -86,42 +86,46 @@ make uk-add NAME="Host ping" TYPE=ping HOSTNAME=host.bub.lan GROUP=100
 
 ## Container
 
-The Makefile auto-detects Podman (preferred) or Docker — no configuration needed.
+The image is built and pushed to GHCR on every release via GitHub Actions.
+
+### Production deploy
+
+No source checkout needed — just the compose file, a config dir, and a `.env`.
 
 ```bash
-make docker-build          # build image (uptime-kuma-pfsense-sync)
+cd /home/slm/docker_apps
+mkdir uptime-kuma-pfsense-sync && cd uptime-kuma-pfsense-sync
+
+# Grab the compose file
+curl -sO https://raw.githubusercontent.com/slmingol/uptime-kuma-pfsense-sync/main/docker-compose.yml
+curl -sO https://raw.githubusercontent.com/slmingol/uptime-kuma-pfsense-sync/main/.env.example
+
+# Drop in the Uptime Kuma config
+mkdir config
+scp <devbox>:~/dev/projects/uptime-kuma-sync-n-bak/uptime-kuma-config.json config/
+
+# Configure credentials
+cp .env.example .env
+# edit .env: PFSENSE_HOST, PFSENSE_API_KEY, PFSENSE_API_SECRET, AUDIT_PORT
+
+podman compose up -d
+```
+
+The dashboard runs at `http://<host>:${AUDIT_PORT:-3210}`.
+
+### Local dev
+
+The repo includes `docker-compose.override.yml` which is auto-merged by compose and adds `build: .` for the local build loop. No prod host will have this file.
+
+```bash
+make docker-build          # build from local source
+make docker-restart        # rebuild and restart
 make docker-audit          # run gap audit in container
 make docker-survey         # run full survey in container
 make docker-audit INSTANCE=secondary
 ```
 
-Override the engine explicitly if needed:
-
-```bash
-make docker-audit CONTAINER_ENGINE=docker
-```
-
-Or run directly:
-
-```bash
-podman compose run --rm audit           # or: docker compose run --rm audit
-podman compose run --rm audit --verbose
-podman compose run --rm -e UPTIME_KUMA_INSTANCE=secondary audit
-```
-
-The container reads `.env` for pfSense credentials and mounts `./config/uptime-kuma-config.json` read-only at `/config/uptime-kuma-config.json`.
-
-**Production deploy** (e.g. `/home/slm/docker_apps/uptime-kuma-pfsense-sync/`):
-
-```bash
-mkdir config
-cp /path/to/uptime-kuma-config.json config/
-cp .env.example .env
-# edit .env with pfSense credentials
-podman compose up -d
-```
-
-**Local dev** — symlink the config from the sibling repo instead of copying:
+Symlink the config from the sibling repo so the local container can read it:
 
 ```bash
 mkdir -p config
