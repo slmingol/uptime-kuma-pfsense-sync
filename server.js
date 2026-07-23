@@ -80,6 +80,9 @@ async function runAudit() {
 
     const hap = classifyBackends(pfData.backends, pfData.dnsHosts);
 
+    const serverAddr = s => s.hasBackend && s.backend?.servers?.[0]
+      ? `${s.backend.servers[0].address}:${s.backend.servers[0].port}` : null;
+
     state.report = {
       generatedAt: new Date().toISOString(),
       totals: { services: all.length, covered: covered.length, gaps: active.length, suppressed, nonGroup },
@@ -87,8 +90,15 @@ async function runAudit() {
         name:       s.name,
         hasBackend: s.hasBackend,
         hasDns:     s.hasDns,
-        server:     s.hasBackend && s.backend?.servers?.[0]
-          ? `${s.backend.servers[0].address}:${s.backend.servers[0].port}` : null,
+        server:     serverAddr(s),
+      })),
+      services: all.map(s => ({
+        name:       s.name,
+        hasBackend: s.hasBackend,
+        hasDns:     s.hasDns,
+        monitored:  !!s.monitor,
+        suppressed: !s.monitor && ignore.services.has(s.name.toLowerCase()),
+        server:     serverAddr(s),
       })),
       unmapped: {
         svcs:      svcs.length,
@@ -240,7 +250,10 @@ tr:hover td{background:#ffffff06}
   <div class="sec">
     <div class="sec-hdr">
       <span class="sec-title">Services Missing a UK Monitor</span>
-      <span class="badge badge-gy" id="gap-badge">—</span>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-gy" id="gap-badge">—</span>
+        <button class="btn" id="toggle-btn" onclick="toggleInventory()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+      </div>
     </div>
     <div id="gap-body"><div class="empty">No data</div></div>
   </div>
@@ -268,7 +281,7 @@ tr:hover td{background:#ffffff06}
 </div>
 
 <script>
-var countdown = 60, refreshTimer = null;
+var countdown = 60, refreshTimer = null, showAll = false, lastReport = null;
 
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -306,6 +319,7 @@ function render(d){
   }
 
   var rpt = d.report;
+  lastReport = rpt;
   var t = rpt.totals;
 
   // stat cards
@@ -320,29 +334,12 @@ function render(d){
   document.getElementById('sv-gaps-sub').textContent =
     t.suppressed>0 ? t.suppressed+' suppressed by ignore list' : 'missing UK monitor';
 
-  // gap badge
+  // gap badge + toggle button
   var gb = document.getElementById('gap-badge');
   gb.textContent = t.gaps+' gaps'+(t.suppressed>0?' (+'+t.suppressed+' suppressed)':'');
   gb.className = 'badge '+(t.gaps===0?'badge-g':'badge-r');
 
-  // gap table
-  var gb2 = document.getElementById('gap-body');
-  if(rpt.gaps.length===0){
-    gb2.innerHTML = '<div class="empty"><span class="g">&#10003; All services have a UK monitor</span></div>';
-  } else {
-    var h = '<table><thead><tr><th></th><th>Service</th><th>HAP</th><th>DNS</th><th>Server</th></tr></thead><tbody>';
-    rpt.gaps.forEach(function(s){
-      h += '<tr>';
-      h += '<td class="r">&#10007;</td>';
-      h += '<td class="b">'+esc(s.name)+'</td>';
-      h += '<td>'+(s.hasBackend?'<span class="ibadge ibadge-g">HAP</span>':'<span class="ibadge ibadge-gy">—</span>')+'</td>';
-      h += '<td>'+(s.hasDns?'<span class="ibadge ibadge-g">DNS</span>':'<span class="ibadge ibadge-gy">—</span>')+'</td>';
-      h += '<td class="saddr">'+esc(s.server||'')+'</td>';
-      h += '</tr>';
-    });
-    h += '</tbody></table>';
-    gb2.innerHTML = h;
-  }
+  renderServiceTable();
 
   // unmapped monitors
   var um = rpt.unmapped;
@@ -387,6 +384,41 @@ function render(d){
       hapb2.innerHTML = h3;
     }
   }
+}
+
+function renderServiceTable(){
+  if(!lastReport) return;
+  var gb2 = document.getElementById('gap-body');
+  var btn = document.getElementById('toggle-btn');
+  btn.textContent = showAll ? 'Show gaps only' : 'Show all';
+
+  var rows = showAll ? lastReport.services : lastReport.gaps;
+
+  if(!showAll && lastReport.gaps.length===0){
+    gb2.innerHTML = '<div class="empty"><span class="g">&#10003; All services have a UK monitor</span></div>';
+    return;
+  }
+
+  var h = '<table><thead><tr><th></th><th>Service</th><th>HAP</th><th>DNS</th><th>Server</th></tr></thead><tbody>';
+  rows.forEach(function(s){
+    var ok = showAll ? s.monitored : false;
+    var sup = showAll && s.suppressed;
+    var icon = ok ? '<span class="g">&#10003;</span>' : (sup ? '<span class="gy">&#8211;</span>' : '<span class="r">&#10007;</span>');
+    h += '<tr'+(ok?' style="opacity:.45"':'')+'>';
+    h += '<td>'+icon+'</td>';
+    h += '<td class="'+(ok?'':'b')+'">'+esc(s.name)+'</td>';
+    h += '<td>'+(s.hasBackend?'<span class="ibadge ibadge-g">HAP</span>':'<span class="ibadge ibadge-gy">—</span>')+'</td>';
+    h += '<td>'+(s.hasDns?'<span class="ibadge ibadge-g">DNS</span>':'<span class="ibadge ibadge-gy">—</span>')+'</td>';
+    h += '<td class="saddr">'+esc(s.server||'')+'</td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  gb2.innerHTML = h;
+}
+
+function toggleInventory(){
+  showAll = !showAll;
+  renderServiceTable();
 }
 
 async function fetchAndRender(){
