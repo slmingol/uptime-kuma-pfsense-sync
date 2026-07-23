@@ -1,3 +1,7 @@
+## 1.6.0 (2026-07-23)
+
+* feat: split compose into prod (GHCR pull) and dev (local build) configs ([f65be65](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f65be65))
+
 ## <small>1.5.3 (2026-07-23)</small>
 
 * fix: update .env.example config path reference to ./config/ ([38ecc04](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/38ecc04))
