@@ -97,7 +97,7 @@ cd /home/slm/docker_apps
 mkdir uptime-kuma-pfsense-sync && cd uptime-kuma-pfsense-sync
 
 # Grab the compose file
-curl -sO https://raw.githubusercontent.com/slmingol/uptime-kuma-pfsense-sync/main/docker-compose.yml
+curl -sO https://raw.githubusercontent.com/slmingol/uptime-kuma-pfsense-sync/main/docker-compose.yaml
 curl -sO https://raw.githubusercontent.com/slmingol/uptime-kuma-pfsense-sync/main/.env.example
 
 # Drop in the Uptime Kuma config
