@@ -155,14 +155,14 @@ function html(schedule) {
 <title>pfSense ↔ Uptime Kuma</title>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-body{font-family:'Courier New',Courier,monospace;background:#0f172a;color:#e2e8f0;min-height:100vh}
+body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New',monospace;background:#0f172a;color:#f1f5f9;min-height:100vh;font-size:14px}
 a{color:inherit}
 
 /* header */
 .hdr{background:#1e293b;border-bottom:1px solid #334155;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .hdr-title{font-size:1rem;font-weight:bold;color:#f1f5f9;letter-spacing:.04em}
 .hdr-title span{color:#06b6d4}
-.hdr-meta{font-size:.72rem;color:#64748b;margin-top:3px}
+.hdr-meta{font-size:.8rem;color:#cbd5e1;margin-top:3px}
 .hdr-right{display:flex;align-items:center;gap:12px}
 
 /* status dot */
@@ -171,11 +171,11 @@ a{color:inherit}
 .s-error   .dot{background:#ef4444}
 .s-running .dot{background:#eab308;animation:blink 1s infinite}
 .s-pending .dot{background:#64748b}
-.status-label{font-size:.78rem}
+.status-label{font-size:.85rem}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* run button */
-.btn{background:#3b82f6;color:#fff;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:.78rem;line-height:1.5}
+.btn{background:#3b82f6;color:#fff;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:.82rem;line-height:1.5}
 .btn:hover:not(:disabled){background:#2563eb}
 .btn:disabled{background:#334155;color:#64748b;cursor:not-allowed}
 
@@ -186,45 +186,45 @@ a{color:inherit}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
 .stat{background:#1e293b;border:1px solid #334155;border-radius:8px;padding:18px 20px}
 .stat-val{font-size:2.4rem;font-weight:bold;line-height:1}
-.stat-lbl{font-size:.65rem;text-transform:uppercase;letter-spacing:.1em;color:#64748b;margin-top:4px}
-.stat-sub{font-size:.68rem;color:#475569;margin-top:5px}
-.g{color:#22c55e}.r{color:#ef4444}.y{color:#eab308}.gy{color:#64748b}
+.stat-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:#cbd5e1;margin-top:4px}
+.stat-sub{font-size:.75rem;color:#cbd5e1;margin-top:5px}
+.g{color:#22c55e}.r{color:#ef4444}.y{color:#eab308}.gy{color:#94a3b8}
 
 /* sections */
 .sec{background:#1e293b;border:1px solid #334155;border-radius:8px;margin-bottom:18px;overflow:hidden}
 .sec-hdr{padding:12px 18px;border-bottom:1px solid #334155;display:flex;align-items:center;justify-content:space-between;gap:8px}
-.sec-title{font-size:.85rem;font-weight:bold;color:#f1f5f9}
-.badge{font-size:.68rem;padding:2px 9px;border-radius:10px;white-space:nowrap}
+.sec-title{font-size:.9rem;font-weight:bold;color:#f1f5f9}
+.badge{font-size:.75rem;padding:2px 9px;border-radius:10px;white-space:nowrap}
 .badge-r{background:#7f1d1d;color:#fca5a5}
 .badge-g{background:#14532d;color:#86efac}
-.badge-gy{background:#1e293b;color:#64748b;border:1px solid #334155}
+.badge-gy{background:#1e293b;color:#cbd5e1;border:1px solid #475569}
 
 /* table */
-table{width:100%;border-collapse:collapse;font-size:.78rem}
-th{padding:7px 16px;text-align:left;color:#475569;border-bottom:1px solid #334155;font-weight:normal;font-size:.65rem;text-transform:uppercase;letter-spacing:.1em}
-td{padding:8px 16px;border-bottom:1px solid #ffffff08}
+table{width:100%;border-collapse:collapse;font-size:.85rem}
+th{padding:7px 16px;text-align:left;color:#cbd5e1;border-bottom:1px solid #334155;font-weight:normal;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+td{padding:9px 16px;border-bottom:1px solid #1e2d3d}
 tr:last-child td{border-bottom:none}
-tr:hover td{background:#ffffff06}
+tr:hover td{background:#ffffff0d}
 .b{font-weight:bold}
-.saddr{color:#475569;font-size:.72rem}
+.saddr{color:#cbd5e1;font-size:.8rem}
 
 /* inline badge */
-.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.62rem;font-weight:bold}
+.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.68rem;font-weight:bold}
 .ibadge-g{background:#14532d;color:#86efac}
-.ibadge-gy{color:#334155;border:1px solid #334155}
+.ibadge-gy{color:#94a3b8;border:1px solid #475569}
 
 /* monitor chips */
 .chips{padding:12px 18px;display:flex;flex-wrap:wrap;gap:8px}
-.chip{background:#0f172a;border:1px solid #334155;border-radius:4px;padding:5px 10px;font-size:.72rem}
-.chip-sub{color:#475569;font-size:.65rem}
+.chip{background:#0f172a;border:1px solid #334155;border-radius:4px;padding:5px 10px;font-size:.8rem}
+.chip-sub{color:#cbd5e1;font-size:.72rem}
 
-.empty{padding:32px;text-align:center;color:#334155;font-size:.8rem}
+.empty{padding:32px;text-align:center;color:#94a3b8;font-size:.85rem}
 
 /* footer */
-.foot{text-align:center;padding:14px;font-size:.68rem;color:#334155}
+.foot{text-align:center;padding:14px;font-size:.75rem;color:#94a3b8}
 
 /* spinner overlay shown when running */
-.spinner-row td{color:#eab308;font-size:.75rem;padding:12px 16px}
+.spinner-row td{color:#eab308;font-size:.82rem;padding:12px 16px}
 </style>
 </head>
 <body>
