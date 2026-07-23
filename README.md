@@ -109,7 +109,24 @@ podman compose run --rm audit --verbose
 podman compose run --rm -e UPTIME_KUMA_INSTANCE=secondary audit
 ```
 
-The container reads `.env` for pfSense credentials and mounts `../uptime-kuma-sync-n-bak/uptime-kuma-config.json` read-only at `/config/uptime-kuma-config.json`.
+The container reads `.env` for pfSense credentials and mounts `./config/uptime-kuma-config.json` read-only at `/config/uptime-kuma-config.json`.
+
+**Production deploy** (e.g. `/home/slm/docker_apps/uptime-kuma-pfsense-sync/`):
+
+```bash
+mkdir config
+cp /path/to/uptime-kuma-config.json config/
+cp .env.example .env
+# edit .env with pfSense credentials
+podman compose up -d
+```
+
+**Local dev** — symlink the config from the sibling repo instead of copying:
+
+```bash
+mkdir -p config
+ln -sf ../../uptime-kuma-sync-n-bak/uptime-kuma-config.json config/uptime-kuma-config.json
+```
 
 ## Audit output
 

@@ -13,7 +13,7 @@ services:
       # To ignore extra services at runtime, mount a custom ignore file:
       # - AUDIT_IGNORE_FILE=/config/audit-ignore.json
     volumes:
-      - ../uptime-kuma-sync-n-bak/uptime-kuma-config.json:/config/uptime-kuma-config.json:ro
+      - ./config/uptime-kuma-config.json:/config/uptime-kuma-config.json:ro
     healthcheck:
       test: ["CMD", "wget", "-qO-", "http://localhost:3000/healthz"]
       interval: 30s
