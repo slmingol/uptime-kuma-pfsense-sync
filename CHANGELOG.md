@@ -1,3 +1,7 @@
+## 1.2.0 (2026-07-23)
+
+* feat: add uk-add make target and update audit-ignore, README ([3c5455a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3c5455a))
+
 ## 1.1.0 (2026-07-23)
 
 * feat: add web dashboard with daily scheduled audit ([272ce31](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/272ce31))
