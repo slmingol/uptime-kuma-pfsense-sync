@@ -77,6 +77,10 @@ make uk-monitors              # list monitors grouped by group
 make uk-monitors-tldr         # summary counts by group and type
 make uk-backup                # backup monitors to JSON
 make uk-diff                  # field-level diff: primary vs secondary
+
+# Add a monitor
+make uk-add NAME="My App" URL="http://host:8080"
+make uk-add NAME="Host ping" TYPE=ping HOSTNAME=host.bub.lan GROUP=100
 ```
 
 ## Container
@@ -152,4 +156,4 @@ Common reasons to ignore a service:
 | `*.example.lan` | Internal LAN DNS — not tracked in the service registry |
 | `*.vpn.example.com` | External VPN/tunnel access path — same services, different inbound route, not a gap |
 
-HAProxy backend server addresses always use hostnames (e.g. `service.example.lan`), never IPs.
+HAProxy backend server addresses typically use hostnames (e.g. `service.example.lan`); static IPs are used where DNS reliability at reload time is a concern.

@@ -29,6 +29,9 @@
     "flaresolverr",
     "NET - opnsense-rtr1",
     "UPS - nut-ups-01 - storage-ups",
-    "HDHomeRun IPTV"
+    "HDHomeRun IPTV",
+    "UPS - bluetti-ups-ki1 - fridge-ups",
+    "meilisearch for jellyfin",
+    "PODS - docker-host-02"
   ]
 }

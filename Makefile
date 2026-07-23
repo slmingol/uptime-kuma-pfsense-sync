@@ -15,7 +15,7 @@ CONTAINER_ENGINE ?= $(shell which podman 2>/dev/null || which docker 2>/dev/null
 COMPOSE          ?= $(CONTAINER_ENGINE) compose
 IMAGE            ?= uptime-kuma-pfsense-sync
 
-.PHONY: audit survey pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff install clean \
+.PHONY: audit survey pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff uk-add install clean \
         server docker-build docker-up docker-down docker-logs docker-restart docker-audit docker-survey help
 .DEFAULT_GOAL := help
 
@@ -45,6 +45,9 @@ help: ## Show this help message
 	@printf "  \033[32mmake uk-monitors-tldr\033[0m             \033[90m# summary counts by group and type\033[0m\n"
 	@printf "  \033[32mmake uk-backup\033[0m                    \033[90m# backup primary monitors to JSON\033[0m\n"
 	@printf "  \033[32mmake uk-diff\033[0m                      \033[90m# field-level diff: primary vs secondary\033[0m\n"
+	@printf "  \033[32mmake uk-add\033[0m                       \033[90m# add a monitor (HTTP or ping)\033[0m\n"
+	@printf "    \033[33mNAME=\"My App\" URL=\"http://host:8080\"\033[0m\n"
+	@printf "    \033[33mNAME=\"Host ping\" TYPE=ping HOSTNAME=host.bub.lan GROUP=100\033[0m\n"
 	@printf "\n"
 	@printf "  \033[32mmake server\033[0m                       \033[90m# run the web dashboard locally (port 3000)\033[0m\n"
 	@printf "  \033[32mmake docker-up\033[0m                    \033[90m# start the web dashboard in Docker (port 3210)\033[0m\n"
@@ -86,6 +89,16 @@ uk-backup: ## Backup Uptime Kuma monitors to JSON [INSTANCE=primary]
 
 uk-diff: ## Field-level diff between primary and secondary instances
 	@cd $(UK_SYNC) && node src/uptime-kuma-diff.js 2>/dev/null
+
+uk-add: ## Add a monitor to Uptime Kuma [NAME= URL= HOSTNAME= TYPE=http GROUP= INTERVAL=60 INSTANCE=primary]
+	@cd $(UK_SYNC) && node src/uptime-kuma-add.js $(INSTANCE) \
+	  --name "$(NAME)" \
+	  $(if $(URL),--url "$(URL)") \
+	  $(if $(HOSTNAME),--hostname "$(HOSTNAME)") \
+	  $(if $(TYPE),--type $(TYPE)) \
+	  $(if $(GROUP),--group $(GROUP)) \
+	  $(if $(INTERVAL),--interval $(INTERVAL)) \
+	  2>/dev/null
 
 ##@ Container
 
