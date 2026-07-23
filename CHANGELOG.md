@@ -1,3 +1,7 @@
+## 1.1.0 (2026-07-23)
+
+* feat: add web dashboard with daily scheduled audit ([272ce31](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/272ce31))
+
 ## 1.0.0 (2026-07-19)
 
 * fix: upgrade semantic-release-action from v4 to v6 ([4bc9003](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/4bc9003))

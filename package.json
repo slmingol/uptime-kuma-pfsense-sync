@@ -1,12 +1,12 @@
 {
   "name": "uptime-kuma-pfsense-sync",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Audit and sync pfSense HAProxy/DNS services against Uptime Kuma monitors",
   "main": "audit.js",
   "scripts": {
-    "audit":  "node audit.js",
+    "audit": "node audit.js",
     "server": "node server.js",
-    "start":  "node server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "axios": "^1.0.0",
