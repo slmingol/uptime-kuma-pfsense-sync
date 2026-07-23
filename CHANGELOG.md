@@ -1,3 +1,7 @@
+## <small>1.3.1 (2026-07-23)</small>
+
+* docs: add pf-audit to README usage section ([7b3ee66](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/7b3ee66))
+
 ## 1.3.0 (2026-07-23)
 
 * feat: add pf-audit make target for HAProxy backend address audit ([67a815e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/67a815e))
