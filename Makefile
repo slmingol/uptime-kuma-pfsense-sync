@@ -15,7 +15,7 @@ CONTAINER_ENGINE ?= $(shell which podman 2>/dev/null || which docker 2>/dev/null
 COMPOSE          ?= $(CONTAINER_ENGINE) compose
 IMAGE            ?= uptime-kuma-pfsense-sync
 
-.PHONY: audit survey pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff uk-add install clean \
+.PHONY: audit survey pf-audit pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff uk-add install clean \
         server docker-build docker-up docker-down docker-logs docker-restart docker-audit docker-survey help
 .DEFAULT_GOAL := help
 
@@ -36,6 +36,7 @@ help: ## Show this help message
 	@printf "  \033[32mmake survey\033[0m                       \033[90m# full inventory with match status for every service\033[0m\n"
 	@printf "  \033[32mmake audit\033[0m    \033[33mINSTANCE=secondary\033[0m  \033[90m# audit against the secondary Uptime Kuma instance\033[0m\n"
 	@printf "\n"
+	@printf "  \033[32mmake pf-audit\033[0m                     \033[90m# audit HAProxy backend addresses for hostname risk\033[0m\n"
 	@printf "  \033[32mmake pf-backends\033[0m                  \033[90m# list all HAProxy backends in pfSense\033[0m\n"
 	@printf "  \033[32mmake pf-backends\033[0m  \033[33mFILTER=jellyfin\033[0m   \033[90m# filter backend listing\033[0m\n"
 	@printf "  \033[32mmake pf-dns\033[0m                       \033[90m# list all DNS host overrides\033[0m\n"
@@ -69,6 +70,9 @@ server: ## Run the web dashboard locally (port 3000) [INSTANCE=primary]
 	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node server.js
 
 ##@ pfSense Survey
+
+pf-audit: ## Audit HAProxy backend addresses for hostname risk (catch-all, reload-vulnerable)
+	@cd $(PFSENSE_CLI) && node cli.js haproxy:audit 2>/dev/null
 
 pf-backends: ## List all HAProxy backends [FILTER=]
 	@cd $(PFSENSE_CLI) && node cli.js haproxy:list $(if $(FILTER),--filter "$(FILTER)") 2>/dev/null
