@@ -1,3 +1,8 @@
+## <small>1.6.2 (2026-07-23)</small>
+
+* docs: fix override filename reference in README (.yml -> .yaml) ([c14744e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/c14744e))
+* chore: rename compose files from .yml to .yaml ([426678d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/426678d))
+
 ## <small>1.6.1 (2026-07-23)</small>
 
 * docs: rewrite container section with prod deploy and dev workflow ([95f77ef](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/95f77ef))
