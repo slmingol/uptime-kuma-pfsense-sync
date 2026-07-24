@@ -418,12 +418,19 @@ function renderUmTable(){
     return;
   }
   var kindColor = {unmatched:'r','ext-mirror':'gy',external:'gy'};
-  var h = '<div class="chips">';
+  var h = '<table><thead><tr><th></th><th>Monitor</th><th>Kind</th><th>Type</th><th>URL</th></tr></thead><tbody>';
   rows.forEach(function(m){
-    var kc = kindColor[m.kind]||'gy';
-    h += '<div class="chip"><strong>'+esc(m.name)+'</strong> <span class="'+kc+'" style="font-size:.68rem">['+esc(m.kind)+']</span><br><span class="chip-sub">'+esc(m.type+': '+m.url)+'</span></div>';
+    var isIssue = m.kind==='unmatched';
+    var icon = isIssue ? '<span class="r">&#10007;</span>' : '<span class="gy">&#8211;</span>';
+    h += '<tr'+(isIssue?'':' style="opacity:.45"')+'>';
+    h += '<td>'+icon+'</td>';
+    h += '<td class="'+(isIssue?'b':'')+'">'+esc(m.name)+'</td>';
+    h += '<td><span class="ibadge '+(isIssue?'ibadge-g':'ibadge-gy')+'">'+esc(m.kind)+'</span></td>';
+    h += '<td class="saddr">'+esc(m.type)+'</td>';
+    h += '<td class="saddr">'+esc(m.url)+'</td>';
+    h += '</tr>';
   });
-  h += '</div>';
+  h += '</tbody></table>';
   el.innerHTML = h;
 }
 
