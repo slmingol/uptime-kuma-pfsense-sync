@@ -1,3 +1,8 @@
+## <small>1.6.3 (2026-07-24)</small>
+
+* fix(ui): clarify dashboard labels and empty-state messages ([0703f80](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0703f80))
+* chore: add one-shot script to fix HAProxy backend hostnames ([5adb80a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/5adb80a))
+
 ## <small>1.6.2 (2026-07-23)</small>
 
 * docs: fix override filename reference in README (.yml -> .yaml) ([c14744e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/c14744e))
