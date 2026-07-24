@@ -1,3 +1,7 @@
+## <small>1.7.2 (2026-07-24)</small>
+
+* fix(ui): replace raw color values with a cohesive CSS token palette ([ba5d68d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/ba5d68d))
+
 ## <small>1.7.1 (2026-07-24)</small>
 
 * fix(ui): render UK Monitors section as table instead of chips ([36fef11](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/36fef11))
