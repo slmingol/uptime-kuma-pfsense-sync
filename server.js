@@ -101,13 +101,13 @@ async function runAudit() {
         server:     serverAddr(s),
       })),
       unmapped: {
-        svcs:      svcs.length,
-        third:     third.length,
-        other:     activeOther.map(m => ({ name: m.name, type: m.type, url: m.url || m.hostname || '' })),
+        svcs:  svcs.map(m => ({ name: m.name, type: m.type, url: m.url || m.hostname || '', kind: 'ext-mirror' })),
+        third: third.map(m => ({ name: m.name, type: m.type, url: m.url || m.hostname || '', kind: 'external' })),
+        other: activeOther.map(m => ({ name: m.name, type: m.type, url: m.url || m.hostname || '', kind: 'unmatched' })),
       },
       haproxy: {
-        safe:   hap.safe.length,
-        named:  hap.named.length,
+        safe:   hap.safe,
+        named:  hap.named,
         shared: hap.shared,
       },
     };
@@ -261,7 +261,10 @@ tr:hover td{background:#ffffff0d}
   <div class="sec">
     <div class="sec-hdr">
       <span class="sec-title">UK Monitors Without a pfSense Match</span>
-      <span class="badge badge-gy" id="um-badge">—</span>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-gy" id="um-badge">—</span>
+        <button class="btn" id="um-toggle-btn" onclick="toggleUm()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+      </div>
     </div>
     <div id="um-body"><div class="empty">No data</div></div>
   </div>
@@ -269,7 +272,10 @@ tr:hover td{background:#ffffff0d}
   <div class="sec">
     <div class="sec-hdr">
       <span class="sec-title">HAProxy Backend Address Health</span>
-      <span class="badge badge-gy" id="hap-badge">—</span>
+      <div style="display:flex;align-items:center;gap:10px">
+        <span class="badge badge-gy" id="hap-badge">—</span>
+        <button class="btn" id="hap-toggle-btn" onclick="toggleHap()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+      </div>
     </div>
     <div id="hap-body"><div class="empty">No data</div></div>
   </div>
@@ -281,7 +287,7 @@ tr:hover td{background:#ffffff0d}
 </div>
 
 <script>
-var countdown = 60, refreshTimer = null, showAll = false, lastReport = null;
+var countdown = 60, refreshTimer = null, showAll = false, showAllUm = false, showAllHap = false, lastReport = null;
 
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 
@@ -344,45 +350,17 @@ function render(d){
   // unmapped monitors
   var um = rpt.unmapped;
   var umb = document.getElementById('um-badge');
-  umb.textContent = um.other.length+' unmatched / '+um.svcs+' ext-mirror / '+um.third+' external';
+  umb.textContent = um.other.length+' unmatched / '+um.svcs.length+' ext-mirror / '+um.third.length+' external';
   umb.className = 'badge '+(um.other.length===0?'badge-g':'badge-r');
-
-  var umb2 = document.getElementById('um-body');
-  if(um.other.length===0){
-    umb2.innerHTML = '<div class="empty"><span class="g">&#10003; No unmatched monitors</span>'+(um.svcs>0||um.third>0?'<span class="gy" style="font-size:.8rem;display:block;margin-top:4px">'+um.svcs+' ext-mirror + '+um.third+' external monitors skipped (expected)</span>':'')+'</div>';
-  } else {
-    var h2 = '<div class="chips">';
-    um.other.forEach(function(m){
-      h2 += '<div class="chip"><strong>'+esc(m.name)+'</strong><br><span class="chip-sub">'+esc(m.type+': '+m.url)+'</span></div>';
-    });
-    h2 += '</div>';
-    umb2.innerHTML = h2;
-  }
+  renderUmTable();
 
   // HAProxy backend health
   var hap = rpt.haproxy;
   if(hap){
     var hapb = document.getElementById('hap-badge');
-    hapb.textContent = hap.safe+' raw IPs / '+hap.named+' named / '+hap.shared.length+' shared';
-    hapb.className = 'badge '+((hap.safe===0&&hap.shared.length===0)?'badge-g':'badge-r');
-
-    var hapb2 = document.getElementById('hap-body');
-    if(hap.shared.length===0){
-      hapb2.innerHTML = '<div class="empty"><span class="g">&#10003; No shared/catch-all hostnames detected</span></div>';
-    } else {
-      var h3 = '<table><thead><tr><th></th><th>Backend</th><th>Server</th><th>Address</th><th>Aliases</th></tr></thead><tbody>';
-      hap.shared.forEach(function(s){
-        h3 += '<tr>';
-        h3 += '<td class="r">&#9888;</td>';
-        h3 += '<td class="b">'+esc(s.backend)+'</td>';
-        h3 += '<td class="saddr">'+esc(s.server)+'</td>';
-        h3 += '<td>'+esc(s.address+':'+s.port)+'</td>';
-        h3 += '<td class="saddr">'+s.aliasCount+' aliases</td>';
-        h3 += '</tr>';
-      });
-      h3 += '</tbody></table>';
-      hapb2.innerHTML = h3;
-    }
+    hapb.textContent = hap.safe.length+' raw IPs / '+hap.named.length+' named / '+hap.shared.length+' shared';
+    hapb.className = 'badge '+((hap.safe.length===0&&hap.shared.length===0)?'badge-g':'badge-r');
+    renderHapTable();
   }
 }
 
@@ -423,6 +401,73 @@ function renderServiceTable(){
 function toggleInventory(){
   showAll = !showAll;
   renderServiceTable();
+}
+
+function renderUmTable(){
+  if(!lastReport) return;
+  var um = lastReport.unmapped;
+  var btn = document.getElementById('um-toggle-btn');
+  btn.textContent = showAllUm ? 'Show issues only' : 'Show all';
+  var rows = showAllUm ? um.other.concat(um.svcs).concat(um.third) : um.other;
+  var el = document.getElementById('um-body');
+  if(rows.length===0){
+    var note = (um.svcs.length>0||um.third.length>0)
+      ? '<span class="gy" style="font-size:.8rem;display:block;margin-top:4px">'+um.svcs.length+' ext-mirror + '+um.third.length+' external skipped (expected)</span>'
+      : '';
+    el.innerHTML = '<div class="empty"><span class="g">&#10003; No unmatched monitors</span>'+note+'</div>';
+    return;
+  }
+  var kindColor = {unmatched:'r','ext-mirror':'gy',external:'gy'};
+  var h = '<div class="chips">';
+  rows.forEach(function(m){
+    var kc = kindColor[m.kind]||'gy';
+    h += '<div class="chip"><strong>'+esc(m.name)+'</strong> <span class="'+kc+'" style="font-size:.68rem">['+esc(m.kind)+']</span><br><span class="chip-sub">'+esc(m.type+': '+m.url)+'</span></div>';
+  });
+  h += '</div>';
+  el.innerHTML = h;
+}
+
+function toggleUm(){
+  showAllUm = !showAllUm;
+  renderUmTable();
+}
+
+function renderHapTable(){
+  if(!lastReport) return;
+  var hap = lastReport.haproxy;
+  var btn = document.getElementById('hap-toggle-btn');
+  btn.textContent = showAllHap ? 'Show issues only' : 'Show all';
+  var el = document.getElementById('hap-body');
+  var rows;
+  if(showAllHap){
+    rows = hap.shared.map(function(s){ return {flag:'r', label:'&#9888;', aliasNote: s.aliasCount+' aliases', s:s}; })
+      .concat(hap.safe.map(function(s){ return {flag:'y', label:'&#9888;', aliasNote:'raw IP', s:s}; }))
+      .concat(hap.named.map(function(s){ return {flag:'', label:'<span class="g">&#10003;</span>', aliasNote:'', s:s}; }));
+  } else {
+    rows = hap.shared.map(function(s){ return {flag:'r', label:'&#9888;', aliasNote:s.aliasCount+' aliases', s:s}; })
+      .concat(hap.safe.map(function(s){ return {flag:'y', label:'&#9888;', aliasNote:'raw IP', s:s}; }));
+  }
+  if(rows.length===0){
+    el.innerHTML = '<div class="empty"><span class="g">&#10003; No raw IPs or shared hostnames</span></div>';
+    return;
+  }
+  var h = '<table><thead><tr><th></th><th>Backend</th><th>Server</th><th>Address</th><th>Note</th></tr></thead><tbody>';
+  rows.forEach(function(r){
+    h += '<tr'+(r.flag?'':' style="opacity:.45"')+'>';
+    h += '<td class="'+r.flag+'">'+r.label+'</td>';
+    h += '<td class="b">'+esc(r.s.backend)+'</td>';
+    h += '<td class="saddr">'+esc(r.s.server)+'</td>';
+    h += '<td>'+esc(r.s.address+':'+r.s.port)+'</td>';
+    h += '<td class="saddr">'+esc(r.aliasNote)+'</td>';
+    h += '</tr>';
+  });
+  h += '</tbody></table>';
+  el.innerHTML = h;
+}
+
+function toggleHap(){
+  showAllHap = !showAllHap;
+  renderHapTable();
 }
 
 async function fetchAndRender(){
