@@ -1,3 +1,7 @@
+## 1.7.0 (2026-07-24)
+
+* feat(ui): add Show all toggle to UK Monitors and HAProxy sections ([d13ed87](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/d13ed87))
+
 ## <small>1.6.3 (2026-07-24)</small>
 
 * fix(ui): clarify dashboard labels and empty-state messages ([0703f80](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0703f80))
