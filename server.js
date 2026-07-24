@@ -244,7 +244,7 @@ tr:hover td{background:#ffffff0d}
   <div class="stats">
     <div class="stat"><div class="stat-val gy" id="sv-total">—</div><div class="stat-lbl">pfSense Services</div><div class="stat-sub">backends + DNS entries</div></div>
     <div class="stat"><div class="stat-val g"  id="sv-cov">—</div><div class="stat-lbl">Monitored</div><div class="stat-sub" id="sv-cov-pct"></div></div>
-    <div class="stat"><div class="stat-val gy" id="sv-gaps">—</div><div class="stat-lbl">Gaps</div><div class="stat-sub" id="sv-gaps-sub">missing UK monitor</div></div>
+    <div class="stat"><div class="stat-val gy" id="sv-gaps">—</div><div class="stat-lbl">Active Gaps</div><div class="stat-sub" id="sv-gaps-sub">missing UK monitor</div></div>
   </div>
 
   <div class="sec">
@@ -332,7 +332,7 @@ function render(d){
   gEl.textContent  = t.gaps;
   gEl.className    = 'stat-val '+(t.gaps===0?'g':'r');
   document.getElementById('sv-gaps-sub').textContent =
-    t.suppressed>0 ? t.suppressed+' suppressed by ignore list' : 'missing UK monitor';
+    t.suppressed>0 ? t.suppressed+' suppressed · not shown' : 'missing UK monitor';
 
   // gap badge + toggle button
   var gb = document.getElementById('gap-badge');
@@ -344,12 +344,12 @@ function render(d){
   // unmapped monitors
   var um = rpt.unmapped;
   var umb = document.getElementById('um-badge');
-  umb.textContent = um.other.length+' unrecognized / '+um.svcs+' ext-path / '+um.third+' third-party';
+  umb.textContent = um.other.length+' unmatched / '+um.svcs+' ext-mirror / '+um.third+' external';
   umb.className = 'badge '+(um.other.length===0?'badge-g':'badge-r');
 
   var umb2 = document.getElementById('um-body');
   if(um.other.length===0){
-    umb2.innerHTML = '<div class="empty"><span class="g">&#10003; All UK monitors are linked to pfSense</span></div>';
+    umb2.innerHTML = '<div class="empty"><span class="g">&#10003; No unmatched monitors</span>'+(um.svcs>0||um.third>0?'<span class="gy" style="font-size:.8rem;display:block;margin-top:4px">'+um.svcs+' ext-mirror + '+um.third+' external monitors skipped (expected)</span>':'')+'</div>';
   } else {
     var h2 = '<div class="chips">';
     um.other.forEach(function(m){
@@ -363,8 +363,8 @@ function render(d){
   var hap = rpt.haproxy;
   if(hap){
     var hapb = document.getElementById('hap-badge');
-    hapb.textContent = hap.safe+' static IPs / '+hap.named+' hostnames / '+hap.shared.length+' shared';
-    hapb.className = 'badge '+(hap.shared.length===0?'badge-g':'badge-r');
+    hapb.textContent = hap.safe+' raw IPs / '+hap.named+' named / '+hap.shared.length+' shared';
+    hapb.className = 'badge '+((hap.safe===0&&hap.shared.length===0)?'badge-g':'badge-r');
 
     var hapb2 = document.getElementById('hap-body');
     if(hap.shared.length===0){
@@ -395,7 +395,11 @@ function renderServiceTable(){
   var rows = showAll ? lastReport.services : lastReport.gaps;
 
   if(!showAll && lastReport.gaps.length===0){
-    gb2.innerHTML = '<div class="empty"><span class="g">&#10003; All services have a UK monitor</span></div>';
+    var supCount = lastReport.totals.suppressed;
+    var okMsg = supCount>0
+      ? '&#10003; No active gaps <span class="gy" style="font-size:.8rem;font-weight:normal">('+supCount+' suppressed — click Show all)</span>'
+      : '&#10003; All services have a UK monitor';
+    gb2.innerHTML = '<div class="empty"><span class="g">'+okMsg+'</span></div>';
     return;
   }
 
