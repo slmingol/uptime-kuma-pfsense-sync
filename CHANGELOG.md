@@ -1,3 +1,7 @@
+## <small>1.7.1 (2026-07-24)</small>
+
+* fix(ui): render UK Monitors section as table instead of chips ([36fef11](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/36fef11))
+
 ## 1.7.0 (2026-07-24)
 
 * feat(ui): add Show all toggle to UK Monitors and HAProxy sections ([d13ed87](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/d13ed87))
