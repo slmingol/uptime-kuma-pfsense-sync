@@ -161,9 +161,9 @@ function html(schedule) {
   --surface:  #0f1c30;
   --border:   #1a2d45;
   --border2:  #223348;
-  --tx:       #dce8f2;
-  --tx-muted: #6b8eaa;
-  --tx-dim:   #3d5470;
+  --tx:       #e8f2fa;
+  --tx-muted: #90b4cc;
+  --tx-dim:   #5e82a0;
   --accent:   #5bb8d4;
   --good:     #38c98a;
   --bad:      #e0575c;
