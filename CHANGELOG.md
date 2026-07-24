@@ -1,3 +1,7 @@
+## <small>1.7.3 (2026-07-24)</small>
+
+* fix(ui): increase text contrast — tx-dim was barely readable at 2:1 ([80f65bd](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/80f65bd))
+
 ## <small>1.7.2 (2026-07-24)</small>
 
 * fix(ui): replace raw color values with a cohesive CSS token palette ([ba5d68d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/ba5d68d))
