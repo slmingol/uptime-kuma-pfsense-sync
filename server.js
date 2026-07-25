@@ -231,7 +231,7 @@ function html(schedule, version) {
   --sec-hdr-bg:  #162414;
   --th-bg:       #131f12;
   --btn-bg:      #6a994e;
-  --btn-tx:      #e8f0d8;
+  --btn-tx:      #d1d8c2;
   --card-bg:     #1a1f2e;
   --lgd-hdr-bg:  #253351;
   --lgd-hdr-tx:  #c8d8f0;
@@ -269,7 +269,7 @@ function html(schedule, version) {
   --sec-hdr-bg:  #162414;
   --th-bg:       #131f12;
   --btn-bg:      #6a994e;
-  --btn-tx:      #e8f0d8;
+  --btn-tx:      #d1d8c2;
   --card-bg:     #1a1f2e;
   --lgd-hdr-bg:  #253351;
   --lgd-hdr-tx:  #c8d8f0;
