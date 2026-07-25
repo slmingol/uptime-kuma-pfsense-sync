@@ -197,7 +197,7 @@ a{color:inherit}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* run button */
-.btn{background:var(--accent);color:#071420;border:none;padding:6px 16px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:bold;line-height:1.5;letter-spacing:.02em}
+.btn{background:var(--accent);color:#071420;border:none;padding:5px 14px;border-radius:4px;cursor:pointer;font-family:inherit;font-size:13px;font-weight:bold;line-height:1.4;letter-spacing:.02em}
 .btn:hover:not(:disabled){filter:brightness(1.12)}
 .btn:disabled{background:var(--border);color:var(--tx-dim);cursor:not-allowed}
 
