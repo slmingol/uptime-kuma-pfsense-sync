@@ -205,7 +205,7 @@ function html(schedule, version) {
   --border:     #2a4028;
   --border2:    #344d30;
   --tx:         #b8ccaa;
-  --tx-muted:   #eef6e8;
+  --tx-muted:   #8cc47e;
   --tx-dim:     #d0e8c0;
   --accent:     #6a994e;
   --good:       #a7c957;
@@ -243,7 +243,7 @@ function html(schedule, version) {
   --border:     #2a4028;
   --border2:    #344d30;
   --tx:         #b8ccaa;
-  --tx-muted:   #eef6e8;
+  --tx-muted:   #8cc47e;
   --tx-dim:     #d0e8c0;
   --accent:     #6a994e;
   --good:       #a7c957;
@@ -734,7 +734,7 @@ function renderUmTable(){
   rows.slice(pageUm*PAGE,(pageUm+1)*PAGE).forEach(function(m){
     var isIssue = m.kind==='unmatched';
     var icon = isIssue ? '<span class="r">&#10007;</span>' : '<span class="gy">&#8211;</span>';
-    h += '<tr'+(isIssue?'':' style="opacity:.45"')+'>';
+    h += '<tr'+(isIssue?'':' style="opacity:.80"')+'>';
     h += '<td>'+icon+'</td>';
     h += '<td class="'+(isIssue?'b':'')+'">'+esc(m.name)+'</td>';
     h += '<td><span class="ibadge '+(isIssue?'ibadge-g':'ibadge-gy')+'">'+esc(m.kind)+'</span></td>';
