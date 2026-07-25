@@ -1,3 +1,11 @@
+## <small>1.9.18 (2026-07-25)</small>
+
+* fix: scope bright text tokens to table cells only (td.b, td.saddr) ([8c59f13](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8c59f13))
+* style: bump name column brightness another step in dark mode ([af59ba9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/af59ba9))
+* style: push name column brightness to near-white in dark mode ([2fd885c](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2fd885c))
+* style: push name column to pure white in dark mode ([6554bb5](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/6554bb5))
+* style: tiger-stripe table rows and brighten name/type/url columns ([75144bc](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/75144bc))
+
 ## <small>1.9.17 (2026-07-25)</small>
 
 * fix: revert hdr-meta font size back to 1em ([fdb8465](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/fdb8465))
