@@ -1,3 +1,12 @@
+## <small>1.9.20 (2026-07-25)</small>
+
+* revert: restore hdr-meta font-size to 1.25em ([e761f42](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e761f42))
+* style: compact sections vertically (margin, header padding, empty padding) ([d51c474](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/d51c474))
+* style: raise dim-row opacity to .80 in services and haproxy tables ([c356152](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/c356152))
+* style: reduce hdr-meta font-size by 0.95x (1.25em -> 1.19em) ([fe4e5c3](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/fe4e5c3))
+* style: reduce hdr-meta font-size by 0.95x again (1.19em -> 1.13em) ([1f87cae](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/1f87cae))
+* style: set hdr-meta font-size to 1em ([40ef824](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/40ef824))
+
 ## <small>1.9.19 (2026-07-25)</small>
 
 * fix: reduce --tx-muted brightness in dark mode, raise UM dim-row opacity ([35ca237](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/35ca237))
