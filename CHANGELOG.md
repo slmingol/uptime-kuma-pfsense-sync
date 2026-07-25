@@ -1,3 +1,7 @@
+## <small>1.8.9 (2026-07-25)</small>
+
+* fix(ui): shrink stat numbers to 1.4rem, bump legend items to 1.15rem ([3fcbbb9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3fcbbb9))
+
 ## <small>1.8.8 (2026-07-25)</small>
 
 * fix(ui): increase legend text size ([6ce39d2](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/6ce39d2))
