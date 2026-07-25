@@ -233,6 +233,13 @@ tr:hover td{background:var(--hover)}
 
 .empty{padding:32px;text-align:center;color:var(--tx-muted);font-size:.85rem}
 
+/* legend */
+.legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;padding:4px 0}
+.legend-group{padding:14px 18px;border-right:1px solid var(--border)}
+.legend-group:last-child{border-right:none}
+.legend-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-dim);margin-bottom:10px}
+.legend-item{font-size:.8rem;color:var(--tx-muted);padding:3px 0;display:flex;align-items:center;gap:7px}
+
 /* footer */
 .foot{text-align:center;padding:14px;font-size:.75rem;color:var(--tx-dim)}
 
@@ -291,6 +298,38 @@ tr:hover td{background:var(--hover)}
       </div>
     </div>
     <div id="hap-body"><div class="empty">No data</div></div>
+  </div>
+</div>
+
+<div class="sec" style="margin-bottom:18px">
+  <div class="sec-hdr">
+    <span class="sec-title">Legend</span>
+  </div>
+  <div class="legend-grid">
+    <div class="legend-group">
+      <div class="legend-label">Service status</div>
+      <div class="legend-item"><span class="g">&#10003;</span> Has a UK monitor</div>
+      <div class="legend-item"><span class="r">&#10007;</span> Missing a UK monitor</div>
+      <div class="legend-item"><span class="gy">&#8211;</span> Suppressed (in ignore list)</div>
+    </div>
+    <div class="legend-group">
+      <div class="legend-label">Column badges</div>
+      <div class="legend-item"><span class="ibadge ibadge-g">HAP</span> HAProxy backend exists</div>
+      <div class="legend-item"><span class="ibadge ibadge-g">DNS</span> lamolabs.org DNS alias exists</div>
+      <div class="legend-item"><span class="ibadge ibadge-gy">—</span> Not present</div>
+    </div>
+    <div class="legend-group">
+      <div class="legend-label">UK monitor kinds</div>
+      <div class="legend-item"><span class="ibadge ibadge-g" style="font-size:.65rem">unmatched</span> On lamolabs.org but no pfSense backend found</div>
+      <div class="legend-item"><span class="ibadge ibadge-gy" style="font-size:.65rem">ext-mirror</span> .svcs.lamolabs.com mirror — expected duplicate</div>
+      <div class="legend-item"><span class="ibadge ibadge-gy" style="font-size:.65rem">external</span> Third-party URL, not a pfSense service</div>
+    </div>
+    <div class="legend-group">
+      <div class="legend-label">HAProxy backend health</div>
+      <div class="legend-item"><span class="r">&#9888;</span> <strong>raw IPs</strong> — direct IP address, catch-all vulnerable</div>
+      <div class="legend-item"><span class="r">&#9888;</span> <strong>shared</strong> — hostname with many aliases, catch-all risk</div>
+      <div class="legend-item"><span class="g">&#10003;</span> <strong>named</strong> — service-specific hostname (healthy)</div>
+    </div>
   </div>
 </div>
 
