@@ -241,8 +241,8 @@ tr:hover td{background:var(--hover)}
 .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;padding:4px 0}
 .legend-group{padding:14px 18px;border-right:1px solid var(--border)}
 .legend-group:last-child{border-right:none}
-.legend-label{font-size:1rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-dim);margin-bottom:10px}
-.legend-item{font-size:1.15rem;color:var(--tx-muted);padding:3px 0;display:flex;align-items:center;gap:7px}
+.legend-label{font-size:.9rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-dim);margin-bottom:10px}
+.legend-item{font-size:1.035rem;color:var(--tx-muted);padding:3px 0;display:flex;align-items:center;gap:7px}
 
 /* footer */
 .foot{text-align:center;padding:14px;font-size:.75rem;color:var(--tx-dim)}
