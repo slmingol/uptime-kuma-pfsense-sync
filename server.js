@@ -372,8 +372,10 @@ td{padding:9px 16px;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
 tr:nth-child(even) td{background:var(--stripe)}
 tr:hover td{background:var(--hover)}
-.b{font-weight:bold;color:var(--tx-hi)}
-.saddr{color:var(--tx-muted-hi);font-size:.82rem}
+.b{font-weight:bold}
+td.b{color:var(--tx-hi)}
+.saddr{color:var(--tx-muted);font-size:.82rem}
+td.saddr{color:var(--tx-muted-hi)}
 
 /* inline badge */
 .ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.77rem;font-weight:bold;letter-spacing:.02em}
