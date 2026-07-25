@@ -1,3 +1,7 @@
+## <small>1.9.12 (2026-07-25)</small>
+
+* fix(ui): shrink legend font by 0.9 factor ([0df66da](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0df66da))
+
 ## <small>1.9.11 (2026-07-25)</small>
 
 * fix(ui): increase header height 68px → 84px ([bd45c40](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/bd45c40))
