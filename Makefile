@@ -66,8 +66,8 @@ audit: ## Gap report — pfSense services not tracked in Uptime Kuma [INSTANCE=p
 survey: ## Full inventory — all pfSense services with monitor match status [INSTANCE=primary]
 	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node audit.js --verbose
 
-server: ## Run the web dashboard locally (port 3000) [INSTANCE=primary]
-	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node server.js
+server: ## Run the web dashboard locally with auto-reload (port 3000) [INSTANCE=primary]
+	@UPTIME_KUMA_INSTANCE=$(INSTANCE) npx nodemon server.js
 
 ##@ pfSense Survey
 
