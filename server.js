@@ -221,7 +221,7 @@ function html(schedule, version) {
   --neu-tx:     #fb923c;
   --hover:      rgba(167,201,87,.08);
   --stripe:     rgba(167,201,87,.05);
-  --tx-hi:      #d4ebc4;
+  --tx-hi:      #eaffd8;
   --tx-muted-hi:#ffffff;
   --hdr-bg:      #0d1a0c;
   --hdr-bd:      #1a3018;
@@ -259,7 +259,7 @@ function html(schedule, version) {
   --neu-tx:     #fb923c;
   --hover:      rgba(167,201,87,.08);
   --stripe:     rgba(167,201,87,.05);
-  --tx-hi:      #d4ebc4;
+  --tx-hi:      #eaffd8;
   --tx-muted-hi:#ffffff;
   --hdr-bg:      #0d1a0c;
   --hdr-bd:      #1a3018;
