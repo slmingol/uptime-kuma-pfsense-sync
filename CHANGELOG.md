@@ -1,3 +1,7 @@
+## 1.8.0 (2026-07-25)
+
+* feat(ui): add legend section explaining badges and status indicators ([66918f4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/66918f4))
+
 ## <small>1.7.3 (2026-07-24)</small>
 
 * fix(ui): increase text contrast — tx-dim was barely readable at 2:1 ([80f65bd](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/80f65bd))
