@@ -670,7 +670,7 @@ function renderServiceTable(){
     var isOk  = !!s.monitored && !s.suppressed;
     var isSup = !!s.suppressed;
     var icon  = isOk ? '<span class="g">&#10003;</span>' : (isSup ? '<span class="gy">&#8211;</span>' : '<span class="r">&#10007;</span>');
-    return '<tr'+(isOk?' style="opacity:.65"':'')+'>'+
+    return '<tr'+(isOk?' style="opacity:.80"':'')+'>'+
       '<td>'+icon+'</td>'+
       '<td class="'+(isOk?'':'b')+'">'+esc(s.name)+'</td>'+
       '<td>'+(s.hasBackend?'<span class="ibadge ibadge-g">HAP</span>':'<span class="ibadge ibadge-gy">—</span>')+'</td>'+
@@ -783,7 +783,7 @@ function renderHapTable(){
   var PBS = 'background:var(--accent);color:#fff;border:none;border-radius:3px;padding:2px 10px;cursor:pointer;font-family:inherit;font-size:.75rem;font-weight:bold';
   var h = '<table><thead><tr><th></th><th>Backend</th><th>Server</th><th>Address</th><th>Note</th></tr></thead><tbody>';
   rows.slice(pageHap*PAGE,(pageHap+1)*PAGE).forEach(function(r){
-    h += '<tr'+(r.flag?'':' style="opacity:.45"')+'>';
+    h += '<tr'+(r.flag?'':' style="opacity:.80"')+'>';
     h += '<td class="'+r.flag+'">'+r.label+'</td>';
     h += '<td class="b">'+esc(r.s.backend)+'</td>';
     h += '<td class="saddr">'+esc(r.s.server)+'</td>';
