@@ -1,3 +1,7 @@
+## <small>1.9.3 (2026-07-25)</small>
+
+* fix(ui): reduce header padding to 6px to tighten banner height ([077d51d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/077d51d))
+
 ## <small>1.9.2 (2026-07-25)</small>
 
 * fix(ui): pin button to fixed 13px so it stops stretching the header ([f057342](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f057342))
