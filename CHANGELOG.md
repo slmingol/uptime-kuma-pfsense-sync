@@ -1,3 +1,7 @@
+## <small>1.9.14 (2026-07-25)</small>
+
+* fix(ui): scale section text 1.25x (titles, badges, tables, empty states, buttons) ([8cdfb3f](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8cdfb3f))
+
 ## <small>1.9.13 (2026-07-25)</small>
 
 * fix(ui): shrink legend font by another 0.9 factor ([73d543a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/73d543a))
