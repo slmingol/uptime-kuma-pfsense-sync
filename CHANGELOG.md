@@ -1,3 +1,7 @@
+## <small>1.9.16 (2026-07-25)</small>
+
+* fix: push latest image to GHCR on every push to main ([e18c86e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e18c86e))
+
 ## <small>1.9.15 (2026-07-25)</small>
 
 * fix: trigger container image build for accumulated style changes ([20bbfad](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/20bbfad))
