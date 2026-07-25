@@ -1,3 +1,7 @@
+## <small>1.9.8 (2026-07-25)</small>
+
+* fix(ui): header title 3em (48px), meta/btn/status 1.2-1.5em off 16px base ([8c7776a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8c7776a))
+
 ## <small>1.9.7 (2026-07-25)</small>
 
 * fix(ui): double header font sizes (title 36px, meta/status/btn 26px) ([801ab31](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/801ab31))
