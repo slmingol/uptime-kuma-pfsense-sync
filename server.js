@@ -176,7 +176,7 @@ function html(schedule) {
   --hover:    rgba(255,255,255,.04);
 }
 
-body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New',monospace;background:var(--bg);color:var(--tx);min-height:100vh;font-size:28px}
+body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New',monospace;background:var(--bg);color:var(--tx);min-height:100vh;font-size:56px}
 a{color:inherit}
 
 /* header */
