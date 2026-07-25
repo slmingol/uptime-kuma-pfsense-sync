@@ -321,7 +321,7 @@ a{color:inherit}
 .hdr{background:var(--hdr-bg);border-bottom:2px solid var(--hdr-bd);padding:0 32px;height:84px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-size:16px;line-height:1.2}
 .hdr-title{font-size:1.25em;font-weight:bold;color:var(--hdr-tx);letter-spacing:.04em}
 .hdr-title span{color:var(--hdr-accent)}
-.hdr-meta{font-size:1.10em;color:var(--hdr-muted);margin-top:2px}
+.hdr-meta{font-size:0.99em;color:var(--hdr-muted);margin-top:2px}
 .hdr-right{display:flex;align-items:center;gap:12px}
 
 /* theme toggle */
