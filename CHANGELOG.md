@@ -1,3 +1,7 @@
+## <small>1.9.19 (2026-07-25)</small>
+
+* fix: reduce --tx-muted brightness in dark mode, raise UM dim-row opacity ([35ca237](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/35ca237))
+
 ## <small>1.9.18 (2026-07-25)</small>
 
 * fix: scope bright text tokens to table cells only (td.b, td.saddr) ([8c59f13](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8c59f13))
