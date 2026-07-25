@@ -1,3 +1,7 @@
+## 1.9.0 (2026-07-25)
+
+* feat(ui): display app version in footer and healthz endpoint ([db8c4ae](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/db8c4ae))
+
 ## <small>1.8.9 (2026-07-25)</small>
 
 * fix(ui): shrink stat numbers to 1.4rem, bump legend items to 1.15rem ([3fcbbb9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3fcbbb9))
