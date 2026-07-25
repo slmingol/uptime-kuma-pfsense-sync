@@ -1,3 +1,7 @@
+## <small>1.8.4 (2026-07-25)</small>
+
+* fix(ui): increase base font size to 28px (2x original) ([0ae1789](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0ae1789))
+
 ## <small>1.8.3 (2026-07-25)</small>
 
 * fix(ui): increase base font size 18px → 20px ([214b8b3](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/214b8b3))
