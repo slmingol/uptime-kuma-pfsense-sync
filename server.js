@@ -181,7 +181,7 @@ body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New
 a{color:inherit}
 
 /* header */
-.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:2px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;line-height:1.2}
+.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:0 24px;height:44px;display:flex;align-items:center;justify-content:space-between;gap:16px;line-height:1.2}
 .hdr-title{font-size:18px;font-weight:bold;color:var(--tx);letter-spacing:.04em}
 .hdr-title span{color:var(--accent)}
 .hdr-meta{font-size:13px;color:var(--tx-muted);margin-top:2px}
