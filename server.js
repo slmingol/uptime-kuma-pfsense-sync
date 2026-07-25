@@ -11,6 +11,7 @@ const {
 
 const PORT          = process.env.PORT          || 3000;
 const CRON_SCHEDULE = process.env.AUDIT_CRON    || '0 8 * * *';
+const VERSION       = require('./package.json').version;
 
 // ─── State ────────────────────────────────────────────────────────────────────
 
@@ -143,13 +144,13 @@ app.post('/api/run', (_req, res) => {
 
 app.get('/', (_req, res) => {
   res.setHeader('Cache-Control', 'no-store');
-  res.send(html(CRON_SCHEDULE));
+  res.send(html(CRON_SCHEDULE, VERSION));
 });
-app.get('/healthz', (_req, res) => res.json({ ok: true, status: state.status, lastRun: state.lastRun }));
+app.get('/healthz', (_req, res) => res.json({ ok: true, version: VERSION, status: state.status, lastRun: state.lastRun }));
 
 // ─── HTML dashboard ───────────────────────────────────────────────────────────
 
-function html(schedule) {
+function html(schedule, version) {
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -337,7 +338,7 @@ tr:hover td{background:var(--hover)}
 </div>
 
 <div class="foot">
-  Schedule: <strong>${schedule}</strong> &nbsp;&bull;&nbsp;
+  v${version} &nbsp;&bull;&nbsp; Schedule: <strong>${schedule}</strong> &nbsp;&bull;&nbsp;
   <span id="refresh-txt">auto-refresh in 60s</span>
 </div>
 
