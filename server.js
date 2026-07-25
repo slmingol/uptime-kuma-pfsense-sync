@@ -215,27 +215,27 @@ a{color:inherit}
 /* sections */
 .sec{background:var(--surface);border:1px solid var(--border);border-radius:8px;margin-bottom:18px;overflow:hidden}
 .sec-hdr{padding:12px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:8px}
-.sec-title{font-size:.9rem;font-weight:bold;color:var(--tx)}
-.badge{font-size:.75rem;padding:2px 9px;border-radius:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.sec-title{font-size:1.125rem;font-weight:bold;color:var(--tx)}
+.badge{font-size:.94rem;padding:2px 9px;border-radius:10px;white-space:nowrap;font-variant-numeric:tabular-nums}
 .badge-r{background:var(--bad-bg);color:var(--bad);border:1px solid #3d1214}
 .badge-g{background:var(--good-bg);color:var(--good);border:1px solid #0e3824}
 .badge-gy{background:transparent;color:var(--tx-muted);border:1px solid var(--border2)}
 
 /* table */
-table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{padding:7px 16px;text-align:left;color:var(--tx-dim);border-bottom:1px solid var(--border);font-weight:normal;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}
+table{width:100%;border-collapse:collapse;font-size:1.06rem}
+th{padding:7px 16px;text-align:left;color:var(--tx-dim);border-bottom:1px solid var(--border);font-weight:normal;font-size:.975rem;text-transform:uppercase;letter-spacing:.1em}
 td{padding:9px 16px;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--hover)}
 .b{font-weight:bold}
-.saddr{color:var(--tx-muted);font-size:.8rem}
+.saddr{color:var(--tx-muted);font-size:1rem}
 
 /* inline badge */
-.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.75rem;font-weight:bold;letter-spacing:.02em}
+.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.94rem;font-weight:bold;letter-spacing:.02em}
 .ibadge-g{background:var(--good-bg);color:var(--good);border:1px solid #0e3824}
 .ibadge-gy{color:var(--tx-dim);border:1px solid var(--border2)}
 
-.empty{padding:32px;text-align:center;color:var(--tx-muted);font-size:.85rem}
+.empty{padding:32px;text-align:center;color:var(--tx-muted);font-size:1.06rem}
 
 /* legend */
 .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;padding:4px 0}
@@ -276,7 +276,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">Services Missing a UK Monitor</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="gap-badge">—</span>
-        <button class="btn" id="toggle-btn" onclick="toggleInventory()" style="font-size:.75rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="toggle-btn" onclick="toggleInventory()" style="font-size:.94rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="gap-body"><div class="empty">No data</div></div>
@@ -287,7 +287,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">UK Monitors Without a pfSense Match</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="um-badge">—</span>
-        <button class="btn" id="um-toggle-btn" onclick="toggleUm()" style="font-size:.75rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="um-toggle-btn" onclick="toggleUm()" style="font-size:.94rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="um-body"><div class="empty">No data</div></div>
@@ -298,7 +298,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">HAProxy Backend Address Health</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="hap-badge">—</span>
-        <button class="btn" id="hap-toggle-btn" onclick="toggleHap()" style="font-size:.75rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="hap-toggle-btn" onclick="toggleHap()" style="font-size:.94rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="hap-body"><div class="empty">No data</div></div>
