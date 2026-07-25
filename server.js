@@ -173,7 +173,7 @@ function html(schedule) {
   --hover:    rgba(255,255,255,.04);
 }
 
-body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New',monospace;background:var(--bg);color:var(--tx);min-height:100vh;font-size:14px}
+body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New',monospace;background:var(--bg);color:var(--tx);min-height:100vh;font-size:16px}
 a{color:inherit}
 
 /* header */
@@ -204,7 +204,7 @@ a{color:inherit}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px 20px}
 .stat-val{font-size:2.4rem;font-weight:bold;line-height:1;font-variant-numeric:tabular-nums}
-.stat-lbl{font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-muted);margin-top:4px}
+.stat-lbl{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-muted);margin-top:4px}
 .stat-sub{font-size:.75rem;color:var(--tx-muted);margin-top:5px}
 .g{color:var(--good)}.r{color:var(--bad)}.y{color:var(--warn)}.gy{color:var(--tx-muted)}
 
@@ -219,7 +219,7 @@ a{color:inherit}
 
 /* table */
 table{width:100%;border-collapse:collapse;font-size:.85rem}
-th{padding:7px 16px;text-align:left;color:var(--tx-dim);border-bottom:1px solid var(--border);font-weight:normal;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em}
+th{padding:7px 16px;text-align:left;color:var(--tx-dim);border-bottom:1px solid var(--border);font-weight:normal;font-size:.78rem;text-transform:uppercase;letter-spacing:.1em}
 td{padding:9px 16px;border-bottom:1px solid var(--border)}
 tr:last-child td{border-bottom:none}
 tr:hover td{background:var(--hover)}
@@ -227,7 +227,7 @@ tr:hover td{background:var(--hover)}
 .saddr{color:var(--tx-muted);font-size:.8rem}
 
 /* inline badge */
-.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.68rem;font-weight:bold;letter-spacing:.02em}
+.ibadge{display:inline-block;padding:1px 6px;border-radius:3px;font-size:.75rem;font-weight:bold;letter-spacing:.02em}
 .ibadge-g{background:var(--good-bg);color:var(--good);border:1px solid #0e3824}
 .ibadge-gy{color:var(--tx-dim);border:1px solid var(--border2)}
 
@@ -237,7 +237,7 @@ tr:hover td{background:var(--hover)}
 .legend-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;padding:4px 0}
 .legend-group{padding:14px 18px;border-right:1px solid var(--border)}
 .legend-group:last-child{border-right:none}
-.legend-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-dim);margin-bottom:10px}
+.legend-label{font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--tx-dim);margin-bottom:10px}
 .legend-item{font-size:.8rem;color:var(--tx-muted);padding:3px 0;display:flex;align-items:center;gap:7px}
 
 /* footer */
@@ -272,7 +272,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">Services Missing a UK Monitor</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="gap-badge">—</span>
-        <button class="btn" id="toggle-btn" onclick="toggleInventory()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="toggle-btn" onclick="toggleInventory()" style="font-size:.75rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="gap-body"><div class="empty">No data</div></div>
@@ -283,7 +283,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">UK Monitors Without a pfSense Match</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="um-badge">—</span>
-        <button class="btn" id="um-toggle-btn" onclick="toggleUm()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="um-toggle-btn" onclick="toggleUm()" style="font-size:.75rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="um-body"><div class="empty">No data</div></div>
@@ -294,7 +294,7 @@ tr:hover td{background:var(--hover)}
       <span class="sec-title">HAProxy Backend Address Health</span>
       <div style="display:flex;align-items:center;gap:10px">
         <span class="badge badge-gy" id="hap-badge">—</span>
-        <button class="btn" id="hap-toggle-btn" onclick="toggleHap()" style="font-size:.68rem;padding:3px 10px">Show all</button>
+        <button class="btn" id="hap-toggle-btn" onclick="toggleHap()" style="font-size:.75rem;padding:3px 10px">Show all</button>
       </div>
     </div>
     <div id="hap-body"><div class="empty">No data</div></div>
