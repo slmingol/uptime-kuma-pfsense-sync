@@ -1,3 +1,7 @@
+## <small>1.9.17 (2026-07-25)</small>
+
+* fix: revert hdr-meta font size back to 1em ([fdb8465](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/fdb8465))
+
 ## <small>1.9.16 (2026-07-25)</small>
 
 * fix: push latest image to GHCR on every push to main ([e18c86e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e18c86e))
