@@ -1,3 +1,7 @@
+## <small>1.9.6 (2026-07-25)</small>
+
+* fix(ui): set explicit height:44px on header to force compact banner ([2961ce2](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2961ce2))
+
 ## <small>1.9.5 (2026-07-25)</small>
 
 * fix(ui): reduce header padding to 2px and tighten line-height ([b23facf](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/b23facf))
