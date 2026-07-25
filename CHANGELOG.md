@@ -1,3 +1,7 @@
+## <small>1.9.13 (2026-07-25)</small>
+
+* fix(ui): shrink legend font by another 0.9 factor ([73d543a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/73d543a))
+
 ## <small>1.9.12 (2026-07-25)</small>
 
 * fix(ui): shrink legend font by 0.9 factor ([0df66da](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0df66da))
