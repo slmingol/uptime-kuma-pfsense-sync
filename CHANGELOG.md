@@ -1,3 +1,14 @@
+## <small>1.9.15 (2026-07-25)</small>
+
+* fix: trigger container image build for accumulated style changes ([20bbfad](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/20bbfad))
+* style: increase header meta font size to 1.5em ([b0707a4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/b0707a4))
+* style: increase header meta font size to 2.5em ([5b961c5](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/5b961c5))
+* style: increase header meta font size to 3.5em ([e3e606f](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e3e606f))
+* style: reduce section text by 0.95x (sec-title, badges, table, th, saddr, ibadge, empty, toggles) ([f4d109a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f4d109a))
+* style: reduce section text by another 0.95x ([b52ad60](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/b52ad60))
+* style: reduce section text by another 0.95x ([9861760](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/9861760))
+* style: reduce section text by another 0.95x ([bad7124](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/bad7124))
+
 ## <small>1.9.14 (2026-07-25)</small>
 
 * fix(ui): scale section text 1.25x (titles, badges, tables, empty states, buttons) ([8cdfb3f](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8cdfb3f))
