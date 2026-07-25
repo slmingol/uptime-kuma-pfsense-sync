@@ -1,3 +1,7 @@
+## <small>1.9.2 (2026-07-25)</small>
+
+* fix(ui): pin button to fixed 13px so it stops stretching the header ([f057342](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f057342))
+
 ## <small>1.9.1 (2026-07-25)</small>
 
 * fix(ui): pin header to fixed px sizes so it stays compact at large body font ([7fff815](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/7fff815))
