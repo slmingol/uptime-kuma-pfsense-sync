@@ -1,3 +1,7 @@
+## <small>1.8.8 (2026-07-25)</small>
+
+* fix(ui): increase legend text size ([6ce39d2](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/6ce39d2))
+
 ## <small>1.8.7 (2026-07-25)</small>
 
 * fix(ui): increase base font size to 112px (2x) ([4dfeefc](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/4dfeefc))
