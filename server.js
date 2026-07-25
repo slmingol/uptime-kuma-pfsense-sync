@@ -141,7 +141,10 @@ app.post('/api/run', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.get('/', (_req, res) => res.send(html(CRON_SCHEDULE)));
+app.get('/', (_req, res) => {
+  res.setHeader('Cache-Control', 'no-store');
+  res.send(html(CRON_SCHEDULE));
+});
 app.get('/healthz', (_req, res) => res.json({ ok: true, status: state.status, lastRun: state.lastRun }));
 
 // ─── HTML dashboard ───────────────────────────────────────────────────────────
