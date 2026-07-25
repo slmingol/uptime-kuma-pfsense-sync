@@ -394,7 +394,7 @@ td.saddr{color:var(--tx-muted-hi)}
 .legend-item{font-size:.93rem;color:var(--tx-muted);padding:3px 0;display:flex;align-items:center;gap:7px}
 
 /* footer */
-.foot{text-align:center;padding:14px;font-size:1.18rem;color:var(--tx-dim)}
+.foot{text-align:center;padding:14px;font-size:1.00rem;color:var(--tx-dim)}
 
 /* spinner */
 .spinner-row td{color:var(--warn);font-size:.82rem;padding:12px 16px}
