@@ -181,10 +181,10 @@ body{font-family:ui-monospace,'SF Mono','Fira Code','Cascadia Code','Courier New
 a{color:inherit}
 
 /* header */
-.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.hdr-title{font-size:1rem;font-weight:bold;color:var(--tx);letter-spacing:.04em}
+.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.hdr-title{font-size:18px;font-weight:bold;color:var(--tx);letter-spacing:.04em}
 .hdr-title span{color:var(--accent)}
-.hdr-meta{font-size:.8rem;color:var(--tx-muted);margin-top:3px}
+.hdr-meta{font-size:13px;color:var(--tx-muted);margin-top:2px}
 .hdr-right{display:flex;align-items:center;gap:12px}
 
 /* status dot */
@@ -193,7 +193,7 @@ a{color:inherit}
 .s-error   .dot{background:var(--bad)}
 .s-running .dot{background:var(--warn);animation:blink 1s infinite}
 .s-pending .dot{background:var(--tx-dim)}
-.status-label{font-size:.85rem;color:var(--tx-muted)}
+.status-label{font-size:13px;color:var(--tx-muted)}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.25}}
 
 /* run button */
