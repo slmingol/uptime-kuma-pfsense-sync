@@ -1,3 +1,7 @@
+## <small>1.8.5 (2026-07-25)</small>
+
+* fix: add Cache-Control: no-store to prevent browser caching the dashboard ([392bb21](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/392bb21))
+
 ## <small>1.8.4 (2026-07-25)</small>
 
 * fix(ui): increase base font size to 28px (2x original) ([0ae1789](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0ae1789))
