@@ -1,3 +1,7 @@
+## <small>1.9.4 (2026-07-25)</small>
+
+* fix(ui): set font-size and line-height on header to prevent 112px body inheritance ([c07cbd3](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/c07cbd3))
+
 ## <small>1.9.3 (2026-07-25)</small>
 
 * fix(ui): reduce header padding to 6px to tighten banner height ([077d51d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/077d51d))
