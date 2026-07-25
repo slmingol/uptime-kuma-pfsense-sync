@@ -1,3 +1,7 @@
+## <small>1.9.7 (2026-07-25)</small>
+
+* fix(ui): double header font sizes (title 36px, meta/status/btn 26px) ([801ab31](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/801ab31))
+
 ## <small>1.9.6 (2026-07-25)</small>
 
 * fix(ui): set explicit height:44px on header to force compact banner ([2961ce2](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2961ce2))
