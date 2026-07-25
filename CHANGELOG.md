@@ -1,3 +1,7 @@
+## <small>1.8.1 (2026-07-25)</small>
+
+* fix(ui): increase base font size 14px → 16px and lift small label floor ([5872d67](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/5872d67))
+
 ## 1.8.0 (2026-07-25)
 
 * feat(ui): add legend section explaining badges and status indicators ([66918f4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/66918f4))
