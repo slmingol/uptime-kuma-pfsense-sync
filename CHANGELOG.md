@@ -1,3 +1,15 @@
+## <small>1.9.21 (2026-07-26)</small>
+
+* fix: remove unqualified ci tag that caused spurious Docker Hub push attempt ([2ab6a9e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2ab6a9e))
+* style: bump hdr-meta font-size to 1.35em ([78722c1](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/78722c1))
+* style: dim Run Now button text 10% in dark mode ([ff247b5](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/ff247b5))
+* style: reduce footer font-size from 1.18rem to 1rem ([fe33829](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/fe33829))
+* style: reduce hdr-meta (last run) font-size by .75em to 0.60em ([4d3c8e8](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/4d3c8e8))
+* style: reduce hdr-meta font-size to 0.99em (x0.90) ([6f0a949](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/6f0a949))
+* style: reduce hdr-meta font-size to 1.10em (x0.90) ([3f99e9a](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3f99e9a))
+* style: set hdr-meta font-size to 1.22em (1.35em x 0.90) ([39f1b84](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/39f1b84))
+* chore: switch server target to nodemon for auto-reload ([9b60de7](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/9b60de7))
+
 ## <small>1.9.20 (2026-07-25)</small>
 
 * revert: restore hdr-meta font-size to 1.25em ([e761f42](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e761f42))
