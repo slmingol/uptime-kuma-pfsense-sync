@@ -63,6 +63,10 @@ make              # show help
 # Reconciliation
 make audit        # gap report — actionable gaps only (default)
 make survey       # full inventory with match status for every service
+make fix          # preview monitors that would be created for gaps (dry-run)
+make fix DRY_RUN=0            # create monitors for all actionable gaps
+make fix DRY_RUN=0 GROUP=5    # place new monitors in group ID 5
+make fix DRY_RUN=0 YES=1      # skip confirmation prompt
 
 # Target a different UK instance
 make audit INSTANCE=secondary
@@ -143,7 +147,14 @@ ln -sf ../../uptime-kuma-sync-n-bak/uptime-kuma-config.json config/uptime-kuma-c
 | Flag | Description |
 |---|---|
 | `--verbose` / `-v` | Show all services, not just gaps |
-| `--show-ignored` | Include entries suppressed by `.audit-ignore.json` |
+| `--all` | Include entries suppressed by `.audit-ignore.json` |
+| `--fix` | Create UK monitors for all actionable gaps |
+| `--dry-run` | With `--fix`: print what would be created without doing it |
+| `--yes` / `-y` | With `--fix`: skip the confirmation prompt |
+| `--group <id>` | With `--fix`: place new monitors in the given group ID |
+| `--interval <s>` | With `--fix`: check interval in seconds (default: 60) |
+
+URL selection for `--fix`: services with a DNS entry get `https://<name>.lamolabs.org`; HAProxy-only services use the first backend server hostname; raw-IP backends fall back to `http://address:port`.
 
 ## Web dashboard
 
