@@ -1,3 +1,7 @@
+## 1.10.0 (2026-07-27)
+
+* feat: add --fix mode to create UK monitors for actionable gaps ([31c7a7d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/31c7a7d))
+
 ## <small>1.9.21 (2026-07-26)</small>
 
 * fix: remove unqualified ci tag that caused spurious Docker Hub push attempt ([2ab6a9e](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2ab6a9e))
