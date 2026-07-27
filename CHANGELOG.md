@@ -1,3 +1,7 @@
+## <small>1.10.1 (2026-07-27)</small>
+
+* docs: document --fix mode and updated CLI flags in README ([e8bdaee](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e8bdaee))
+
 ## 1.10.0 (2026-07-27)
 
 * feat: add --fix mode to create UK monitors for actionable gaps ([31c7a7d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/31c7a7d))
