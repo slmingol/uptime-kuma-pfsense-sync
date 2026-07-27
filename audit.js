@@ -3,9 +3,10 @@
 
 require('dotenv').config();
 
+const readline = require('readline');
 const {
   fetchPfSenseData, loadUptimeKumaConfig, connectUptimeKuma,
-  fetchMonitors, reconcile, categorize, urlHostname, loadIgnoreList,
+  fetchMonitors, addMonitor, reconcile, categorize, urlHostname, loadIgnoreList,
 } = require('./lib/audit-core');
 
 const c = {
@@ -21,6 +22,16 @@ const c = {
 const args    = process.argv.slice(2);
 const verbose = args.includes('--verbose') || args.includes('-v');
 const showAll = args.includes('--all');   // include ignored services
+const fixMode = args.includes('--fix');
+const dryRun  = args.includes('--dry-run');
+const autoYes = args.includes('--yes') || args.includes('-y');
+
+function flagVal(name) {
+  const idx = args.indexOf(`--${name}`);
+  return idx !== -1 && args[idx + 1] ? args[idx + 1] : null;
+}
+const fixGroup    = flagVal('group') ? parseInt(flagVal('group'), 10) : null;
+const fixInterval = flagVal('interval') ? parseInt(flagVal('interval'), 10) : 60;
 
 // ─── Report helpers ───────────────────────────────────────────────────────────
 
@@ -128,10 +139,101 @@ function printReport(services, unmapped, monitors) {
   console.log('');
 }
 
+// ─── Fix mode ─────────────────────────────────────────────────────────────────
+
+function buildUrl(svc) {
+  if (svc.hasDns) return `https://${svc.name}.lamolabs.org`;
+  if (svc.hasBackend && svc.backend?.servers?.length > 0) {
+    const sv = svc.backend.servers[0];
+    // prefer hostname over raw IP per convention
+    if (sv.address && !/^\d+\.\d+\.\d+\.\d+$/.test(sv.address)) {
+      return `https://${sv.address}`;
+    }
+    return `http://${sv.address}:${sv.port}`;
+  }
+  return null;
+}
+
+function buildPayload(svc) {
+  const url = buildUrl(svc);
+  if (!url) return null;
+  return {
+    name: svc.name,
+    type: 'http',
+    url,
+    method: 'GET',
+    interval: fixInterval,
+    retryInterval: fixInterval,
+    maxretries: 3,
+    accepted_statuscodes: ['200-299'],
+    parent: fixGroup,
+    active: 1,
+    conditions: [],
+  };
+}
+
+async function confirm(question) {
+  if (autoYes) return true;
+  const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+  return new Promise(resolve => {
+    rl.question(question, ans => { rl.close(); resolve(ans.trim().toLowerCase() === 'y'); });
+  });
+}
+
+async function runFix(socket, services) {
+  const ignore = loadIgnoreList();
+  const gaps = [...services.values()]
+    .filter(s => !s.monitor && !ignore.services.has(s.name.toLowerCase()))
+    .sort((a, b) => a.name.localeCompare(b.name));
+
+  if (gaps.length === 0) {
+    console.log(`\n${c.green}No actionable gaps — nothing to add.${c.reset}\n`);
+    return;
+  }
+
+  const payloads = gaps.map(s => ({ svc: s, payload: buildPayload(s) }));
+  const valid   = payloads.filter(p => p.payload);
+  const noUrl   = payloads.filter(p => !p.payload);
+
+  hdr('Fix mode — monitors to create', `${valid.length} to add${noUrl.length ? `, ${noUrl.length} skipped (no usable URL)` : ''}`);
+  for (const { svc, payload } of valid) {
+    const dns = svc.hasDns ? `${c.green}DNS${c.reset}` : `${c.gray}   ${c.reset}`;
+    const hap = svc.hasBackend ? `${c.green}HAP${c.reset}` : `${c.gray}   ${c.reset}`;
+    console.log(`  ${c.yellow}+${c.reset} ${c.bold}${svc.name.padEnd(30)}${c.reset}  ${hap}  ${dns}  ${c.cyan}${payload.url}${c.reset}`);
+  }
+  if (noUrl.length) {
+    console.log(`\n  ${c.gray}Skipped (no usable URL):${c.reset}`);
+    for (const { svc } of noUrl) console.log(`    ${c.gray}- ${svc.name}${c.reset}`);
+  }
+
+  if (dryRun) {
+    console.log(`\n${c.gray}Dry run — no monitors created.${c.reset}\n`);
+    return;
+  }
+
+  const ok = await confirm(`\nCreate ${valid.length} monitor(s)? [y/N] `);
+  if (!ok) { console.log(`${c.gray}Aborted.${c.reset}\n`); return; }
+
+  console.log('');
+  let created = 0;
+  for (const { svc, payload } of valid) {
+    process.stdout.write(`  Adding ${svc.name}... `);
+    try {
+      const id = await addMonitor(socket, payload);
+      console.log(`${c.green}✓${c.reset} id=${id}`);
+      created++;
+    } catch (err) {
+      console.log(`${c.red}✗ ${err.message}${c.reset}`);
+    }
+  }
+  console.log(`\n${c.green}${created}/${valid.length} monitors created.${c.reset}\n`);
+}
+
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
-  console.log(`${c.bold}pfSense → Uptime Kuma audit${c.reset}${verbose ? ' (verbose)' : ''}${showAll ? ' (all)' : ''}\n`);
+  const modeLabel = fixMode ? (dryRun ? ' (fix --dry-run)' : ' (fix)') : (verbose ? ' (verbose)' : '');
+  console.log(`${c.bold}pfSense → Uptime Kuma audit${c.reset}${modeLabel}${showAll ? ' (all)' : ''}\n`);
   let socket;
   try {
     process.stdout.write('Fetching pfSense data...        ');
@@ -149,7 +251,12 @@ async function main() {
     console.log(`${c.green}done${c.reset}  ${c.gray}${monitors.length} monitors${c.reset}`);
 
     const { services, unmapped } = reconcile(backends, dnsHosts, monitors);
-    printReport(services, unmapped, monitors);
+
+    if (fixMode) {
+      await runFix(socket, services);
+    } else {
+      printReport(services, unmapped, monitors);
+    }
 
   } catch (err) {
     console.error(`\n${c.red}Error: ${err.message}${c.reset}`);

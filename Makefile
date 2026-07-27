@@ -15,7 +15,7 @@ CONTAINER_ENGINE ?= $(shell which podman 2>/dev/null || which docker 2>/dev/null
 COMPOSE          ?= $(CONTAINER_ENGINE) compose
 IMAGE            ?= uptime-kuma-pfsense-sync
 
-.PHONY: audit survey pf-audit pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff uk-add install clean \
+.PHONY: audit survey fix pf-audit pf-backends pf-dns uk-monitors uk-monitors-tldr uk-backup uk-diff uk-add install clean \
         server docker-build docker-up docker-down docker-logs docker-restart docker-audit docker-survey help
 .DEFAULT_GOAL := help
 
@@ -65,6 +65,9 @@ audit: ## Gap report — pfSense services not tracked in Uptime Kuma [INSTANCE=p
 
 survey: ## Full inventory — all pfSense services with monitor match status [INSTANCE=primary]
 	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node audit.js --verbose
+
+fix: ## Create UK monitors for all actionable gaps (dry-run by default) [INSTANCE=primary DRY_RUN=1]
+	@UPTIME_KUMA_INSTANCE=$(INSTANCE) node audit.js --fix $(if $(filter 0,$(DRY_RUN)),,--dry-run) $(if $(GROUP),--group $(GROUP)) $(if $(INTERVAL),--interval $(INTERVAL)) $(if $(YES),--yes)
 
 server: ## Run the web dashboard locally with auto-reload (port 3000) [INSTANCE=primary]
 	@UPTIME_KUMA_INSTANCE=$(INSTANCE) npx nodemon server.js
