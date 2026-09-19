@@ -1,3 +1,19 @@
+## <small>1.10.2 (2026-09-19)</small>
+
+* Add renovate.json ([cb61700](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/cb61700))
+* Merge pull request #1 from slmingol/renovate/configure ([da4a6c0](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/da4a6c0)), closes [#1](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/1)
+* Merge pull request #14 from slmingol/renovate/dotenv-18.x ([c2742a2](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/c2742a2)), closes [#14](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/14)
+* Merge pull request #2 from slmingol/renovate/express-4.x-lockfile ([d40df96](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/d40df96)), closes [#2](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/2)
+* Merge pull request #3 from slmingol/renovate/axios-1.x-lockfile ([9a298e9](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/9a298e9)), closes [#3](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/3)
+* Merge pull request #5 from slmingol/renovate/actions-checkout-7.x ([de7d72d](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/de7d72d)), closes [#5](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/5)
+* Merge pull request #6 from slmingol/renovate/actions-setup-node-7.x ([a4d61f8](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/a4d61f8)), closes [#6](https://github.com/slmingol/uptime-kuma-pfsense-sync/issues/6)
+* fix(deps): update dependency dotenv to v18 ([4242cdb](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/4242cdb))
+* chore(deps): update actions/checkout action to v7 ([b09c830](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/b09c830))
+* chore(deps): update actions/setup-node action to v7 ([bd7b63c](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/bd7b63c))
+* chore(deps): update dependency axios to v1.20.0 ([03bfc86](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/03bfc86))
+* chore(deps): update dependency express to v4.22.3 ([8cfd921](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/8cfd921))
+* chore(renovate): enable automerge for minor/patch updates ([3ced1d5](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3ced1d5))
+
 ## <small>1.10.1 (2026-07-27)</small>
 
 * docs: document --fix mode and updated CLI flags in README ([e8bdaee](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/e8bdaee))
