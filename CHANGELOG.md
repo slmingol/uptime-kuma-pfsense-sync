@@ -1,3 +1,9 @@
+## [1.12.3](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.2...v1.12.3) (2026-09-19)
+
+### Reverts
+
+* Revert "fix(ci): pin semver tag in docker-compose.yaml after each release" ([3b616c6](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/3b616c6fd5127d7e1ba9b087b89256fa35c8c816))
+
 ## [1.12.2](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.1...v1.12.2) (2026-09-19)
 
 ### Bug Fixes
