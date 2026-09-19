@@ -848,9 +848,15 @@ fetchAndRender().then(function(){ tick(); });
 // ─── Start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, async () => {
-  console.log(`pfSense ↔ Uptime Kuma audit server`);
-  console.log(`  http://localhost:${PORT}`);
-  console.log(`  cron: ${CRON_SCHEDULE}`);
+  const divider = '─'.repeat(50);
+  console.log(divider);
+  console.log('  pfSense ↔ Uptime Kuma Sync');
+  console.log(`  v${VERSION}`);
+  console.log(divider);
+  console.log(`  URL  : http://localhost:${PORT}`);
+  console.log(`  Cron : ${CRON_SCHEDULE}`);
+  console.log(`  Node : ${process.version}`);
+  console.log(divider);
   console.log('');
   console.log('[audit] running initial audit...');
   await runAudit();
