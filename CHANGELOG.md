@@ -1,3 +1,9 @@
+## [1.11.1](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.0...v1.11.1) (2026-09-19)
+
+### Bug Fixes
+
+* **deps:** restore node-cron 3.0.3 and uuid in lockfile ([1521659](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/15216594a850fa7a385b2ed299bf5da7aa2e0715))
+
 ## [1.11.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.4...v1.11.0) (2026-09-19)
 
 ### Features
