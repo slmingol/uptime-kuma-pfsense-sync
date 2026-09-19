@@ -1,3 +1,9 @@
+## [1.10.4](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.3...v1.10.4) (2026-09-19)
+
+### Bug Fixes
+
+* **deps:** update dependency express to v5 ([cd9b2b4](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/cd9b2b48c5d8148ba539d14e45f563e0666fa7c0))
+
 ## [1.10.3](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.2...v1.10.3) (2026-09-19)
 
 ### Bug Fixes
