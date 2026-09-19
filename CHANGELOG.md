@@ -1,3 +1,9 @@
+## [1.11.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.4...v1.11.0) (2026-09-19)
+
+### Features
+
+* add startup banner with version and config info ([ba3ccac](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/ba3ccac13da112a4cc9ba5a1e90e69a436b6cff0))
+
 ## [1.10.4](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.3...v1.10.4) (2026-09-19)
 
 ### Bug Fixes
