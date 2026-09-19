@@ -848,15 +848,26 @@ fetchAndRender().then(function(){ tick(); });
 // ─── Start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, async () => {
-  const divider = '─'.repeat(50);
-  console.log(divider);
-  console.log('  pfSense ↔ Uptime Kuma Sync');
-  console.log(`  v${VERSION}`);
-  console.log(divider);
-  console.log(`  URL  : http://localhost:${PORT}`);
-  console.log(`  Cron : ${CRON_SCHEDULE}`);
-  console.log(`  Node : ${process.version}`);
-  console.log(divider);
+  const c = {
+    reset:  '\x1b[0m',
+    bold:   '\x1b[1m',
+    cyan:   '\x1b[36m',
+    green:  '\x1b[32m',
+    dim:    '\x1b[2m',
+  };
+  const w = 52;
+  const pad = (s, n) => s + ' '.repeat(Math.max(0, n - s.length));
+  const row = (label, value) =>
+    `${c.cyan}║${c.reset} ${c.dim}${pad(label, 8)}${c.reset}${c.bold}${value}${c.reset}${' '.repeat(Math.max(0, w - 10 - value.length))}${c.cyan}║${c.reset}`;
+
+  console.log(`${c.cyan}╔${'═'.repeat(w)}╗${c.reset}`);
+  console.log(`${c.cyan}║${c.reset}${c.bold}${ ' '.repeat(Math.floor((w - 26) / 2))}pfSense  ↔  Uptime Kuma Sync${' '.repeat(Math.ceil((w - 26) / 2))}${c.reset}${c.cyan}║${c.reset}`);
+  console.log(`${c.cyan}║${c.reset}${c.green}${' '.repeat(Math.floor((w - VERSION.length - 1) / 2))}v${VERSION}${' '.repeat(Math.ceil((w - VERSION.length - 1) / 2))}${c.reset}${c.cyan}║${c.reset}`);
+  console.log(`${c.cyan}╠${'═'.repeat(w)}╣${c.reset}`);
+  console.log(row('URL',  `http://localhost:${PORT}`));
+  console.log(row('Cron', CRON_SCHEDULE));
+  console.log(row('Node', process.version));
+  console.log(`${c.cyan}╚${'═'.repeat(w)}╝${c.reset}`);
   console.log('');
   console.log('[audit] running initial audit...');
   await runAudit();
