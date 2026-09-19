@@ -1,3 +1,9 @@
+## [1.12.1](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.0...v1.12.1) (2026-09-19)
+
+### Bug Fixes
+
+* skip ANSI codes when stdout is not a TTY ([0baf285](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/0baf285dcf00f5ea764004e142ea00794c0e8107))
+
 ## [1.12.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.2...v1.12.0) (2026-09-19)
 
 ### Features
