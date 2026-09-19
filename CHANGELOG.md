@@ -1,3 +1,11 @@
+## [1.10.3](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.10.2...v1.10.3) (2026-09-19)
+
+### Bug Fixes
+
+* **ci:** replace cycjimmy action with npx semantic-release ([2b1d352](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/2b1d35213bffeaff8836c658b48b4d26363b3953))
+* **deps:** downgrade conventional-changelog-conventionalcommits to v9 ([6e5d989](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/6e5d989ea5f10704d7ef85353374d19e7d54b69c))
+* regenerate package-lock.json for semantic-release major version bump ([4af8618](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/4af8618b25a371b9599de0904fb3768ec9885465))
+
 ## <small>1.10.2 (2026-09-19)</small>
 
 * Add renovate.json ([cb61700](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/cb61700))
