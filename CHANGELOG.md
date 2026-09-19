@@ -1,3 +1,9 @@
+## [1.13.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.3...v1.13.0) (2026-09-19)
+
+### Features
+
+* add inline SVG favicon ([9594ef5](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/9594ef51405ef8e4d277eb4829e8dda113407e4a))
+
 ## [1.12.3](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.2...v1.12.3) (2026-09-19)
 
 ### Reverts
