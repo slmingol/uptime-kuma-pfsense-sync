@@ -1,6 +1,6 @@
 services:
   audit:
-    image: ghcr.io/slmingol/uptime-kuma-pfsense-sync:1.12.0
+    image: ghcr.io/slmingol/uptime-kuma-pfsense-sync:latest
     restart: unless-stopped
     ports:
       - "${AUDIT_PORT:-3210}:3000"
