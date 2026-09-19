@@ -1,3 +1,9 @@
+## [1.12.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.2...v1.12.0) (2026-09-19)
+
+### Features
+
+* pretty box banner with ANSI colors on startup ([124acfb](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/124acfb6ab00635d707df2e52e13d1ae604d708a))
+
 ## [1.11.2](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.1...v1.11.2) (2026-09-19)
 
 ### Bug Fixes
