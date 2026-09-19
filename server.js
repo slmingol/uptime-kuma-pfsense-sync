@@ -848,13 +848,14 @@ fetchAndRender().then(function(){ tick(); });
 // ─── Start ────────────────────────────────────────────────────────────────────
 
 app.listen(PORT, async () => {
-  const c = {
+  const tty = process.stdout.isTTY || process.env.FORCE_COLOR;
+  const c = tty ? {
     reset:  '\x1b[0m',
     bold:   '\x1b[1m',
     cyan:   '\x1b[36m',
     green:  '\x1b[32m',
     dim:    '\x1b[2m',
-  };
+  } : { reset:'', bold:'', cyan:'', green:'', dim:'' };
   const w = 52;
   const pad = (s, n) => s + ' '.repeat(Math.max(0, n - s.length));
   const row = (label, value) =>
