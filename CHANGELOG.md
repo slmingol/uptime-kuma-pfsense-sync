@@ -1,3 +1,9 @@
+## [1.11.2](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.1...v1.11.2) (2026-09-19)
+
+### Bug Fixes
+
+* **ci:** checkout release tag for container build ([f838c47](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/f838c4759c166ea854dbac70935a0d0a07db2293))
+
 ## [1.11.1](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.11.0...v1.11.1) (2026-09-19)
 
 ### Bug Fixes
