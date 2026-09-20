@@ -10,6 +10,10 @@
         "patch"
       ],
       "automerge": true
+    },
+    {
+      "matchPackageNames": ["conventional-changelog-conventionalcommits"],
+      "allowedVersions": "<10.0.0"
     }
   ]
 }
