@@ -1,3 +1,10 @@
+## [1.13.1](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.13.0...v1.13.1) (2026-09-20)
+
+### Bug Fixes
+
+* **deps:** downgrade conventional-changelog-conventionalcommits to v9 again ([03703c0](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/03703c0b9a9d8afc6f8bd92c8fd7edff66c61e9a))
+* **deps:** update dependency node-cron to v4 ([47e49d8](https://github.com/slmingol/uptime-kuma-pfsense-sync/commit/47e49d847485fce3f9c2c1d5fe46967a53a0077b))
+
 ## [1.13.0](https://github.com/slmingol/uptime-kuma-pfsense-sync/compare/v1.12.3...v1.13.0) (2026-09-19)
 
 ### Features
