@@ -21,7 +21,9 @@
     "omv",
     "uptime-kuma1",
     "uptime-kuma2",
-    "watcher-home"
+    "tor-01",
+    "watcher-home",
+    "xcpng-hv-02"
   ],
   "monitors": [
     "flare-bypasser",
